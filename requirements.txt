@@ -1,0 +1,24 @@
+# Core Python scientific libraries
+numpy
+
+# Jupyter ecosystem
+jupyter
+notebook
+jupyter-book
+
+# Plotting / visualization (useful for future labs)
+matplotlib
+seaborn
+
+# For deep learning labs (future exercises)
+torch
+torchvision
+torchaudio
+
+# For data handling
+pandas
+scikit-learn
+
+# Optional: citation/references support
+sphinx
+sphinx-rtd-theme

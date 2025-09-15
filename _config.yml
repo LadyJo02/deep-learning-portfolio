@@ -1,0 +1,27 @@
+# Book settings
+title: "Deep Learning Portfolio"
+author: "Joanna Reyda D. Santos"
+logo: "logo.png"
+
+# Repository info (for GitHub buttons to work)
+repository:
+  url: "https://github.com/LadyJo02/deep-learning-portfolio"
+  path_to_book: ""
+  branch: main
+
+# Theme configuration
+html:
+  favicon: "logo.png"
+  use_repository_button: true
+  use_issues_button: true
+  use_edit_page_button: true
+  baseurl: "https://LadyJo02.github.io/deep-learning-portfolio/"
+  extra_css:
+    - custom.css
+  theme:
+    name: sphinx_book_theme
+    options:
+      home_page_in_toc: true
+      collapse_navigation: false
+      sticky_navigation: true
+  announcement: "🚀 Welcome to my Deep Learning Portfolio!"

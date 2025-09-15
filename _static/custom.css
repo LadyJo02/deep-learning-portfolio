@@ -1,0 +1,63 @@
+/* === General Layout === */
+body {
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: #fdfdfd;
+  color: #333;
+}
+
+/* Sidebar Styling */
+.bd-sidebar {
+  background-color: #f9fafc; /* subtle background */
+  border-right: 1px solid #e5e7eb;
+}
+
+/* Headings */
+h1, h2, h3 {
+  color: #004aad; /* deep blue */
+  font-weight: 600;
+}
+
+/* Links */
+a {
+  color: #0066cc;
+  text-decoration: none;
+}
+a:hover {
+  color: #004aad;
+  text-decoration: underline;
+}
+
+/* === Cards === */
+.card {
+  border-radius: 12px;
+  background: #ffffff;
+  padding: 1.2em;
+  margin: 1em 0;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+}
+
+/* Emoji headers inside cards */
+.card h2, .card h3 {
+  margin-top: 0;
+}
+
+/* === Code blocks === */
+code, pre {
+  font-family: "Fira Code", monospace;
+  background-color: #f1f3f4;
+  border-radius: 4px;
+  padding: 3px 6px;
+}
+
+/* === Announcement bar === */
+.bd-header-announcement {
+  background-color: #004aad !important;
+  color: white !important;
+  font-weight: 600;
+}
