@@ -1,6 +1,3 @@
-# Table of contents
-# Learn more at https://jupyterbook.org/customize/toc.html
-
 format: jb-book
 root: intro
 
@@ -8,19 +5,20 @@ parts:
   - caption: "Laboratory Activities"
     chapters:
       - file: labs/lab2_forward_pass
-        title: "Laboratory Task 2 – Forward Pass"
+        title: "Lab 2: Implementing a Forward Pass"
       - file: labs/lab3_backpropagation
-        title: "Laboratory Task 3 – Backpropagation"
+        title: "Lab 3: Understanding Backpropagation"
       - file: labs/lab4_pytorch_regression
-        title: "Laboratory Task 4 – PyTorch Regression"
-        
+        title: "Lab 4: Building a Regression Model in PyTorch"
+      - file: labs/lab5_tensor_manipulations
+        title: "Lab 5: Tensor Manipulations"
         
   - caption: "Exercises"
     chapters:
       - file: exercises/ex1
-        title: "Exercise 1 – Neural Nets Basics"
+        title: "Exercise 1: Foundations of Neural Networks"
 
   - caption: "Projects"
     chapters:
       - file: projects/project1
-        title: "Project 1 – Classification"
+        title: "Project: Image Classification with CNNs"

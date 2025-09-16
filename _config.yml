@@ -1,28 +1,30 @@
-# Book settings
-title: "Deep Learning Portfolio"
-author: "Joanna Reyda D. Santos"
-logo: "logo.png"
+title: Deep Learning Portfolio
+author: Joanna Reyda D. Santos
+copyright: "2025"
+logo: logo.png
 
-# Repository info (for GitHub buttons to work)
-repository:
-  url: "https://github.com/LadyJo02/deep-learning-portfolio"
-  path_to_book: ""
-  branch: main
+execute:
+  execute_notebooks: force
 
-# Theme configuration
 html:
-  favicon: "logo.png"
-  favicon: favicon.png
-  use_repository_button: true
-  use_issues_button: true
-  use_edit_page_button: true
-  baseurl: "https://LadyJo02.github.io/deep-learning-portfolio/"
-  extra_css:
+  favicon: logo.png
+  static_path:
+    - _static
+  css_files:
+    - "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     - custom.css
-  theme:
-    name: sphinx_book_theme
-    options:
-      home_page_in_toc: true
-      collapse_navigation: false
-      sticky_navigation: true
-  announcement: "🚀 Welcome to my Deep Learning Portfolio!"
+
+  footer_items:
+    - text: "Copyright © 2025, Joanna Reyda D. Santos"
+  extra_footer: |
+    <p>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>.</p>
+
+repository:
+  url: https://github.com/LadyJo02/deep-learning-portfolio
+  branch: main
+  use_repository_button: true
+
+sphinx:
+  config:
+    html_theme_options:
+      use_light_mode_button: true
