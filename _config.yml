@@ -13,16 +13,16 @@ html:
   css_files:
     - "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     - custom.css
+
   footer_items:
     - text: "Copyright © 2025, Joanna Reyda D. Santos"
-    - text: "|"
-    - text: 'Powered by <a href="https://jupyterbook.org">Jupyter Book</a>'
+  extra_footer: |
+    <p>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>.</p>
 
-# This section controls the GitHub icon in the header
 repository:
-  url: https://github.com/LadyJo02/deep-learning-portfolio  # The link to your repository
+  url: https://github.com/LadyJo02/deep-learning-portfolio
   branch: main
-  use_repository_button: true  # This tells the theme to show the icon
+  use_repository_button: true
 
 sphinx:
   config:
