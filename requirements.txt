@@ -6,11 +6,11 @@ jupyter
 notebook
 jupyter-book
 
-# Plotting / visualization (useful for future labs)
+# Plotting/visualization 
 matplotlib
 seaborn
 
-# For deep learning labs (future exercises)
+# For deep learning labs 
 torch
 torchvision
 torchaudio
@@ -19,6 +19,6 @@ torchaudio
 pandas
 scikit-learn
 
-# Optional: citation/references support
+# Citation/references support
 sphinx
 sphinx-rtd-theme
