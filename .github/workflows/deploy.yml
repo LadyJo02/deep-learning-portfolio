@@ -38,7 +38,7 @@ jobs:
           pip install jupyter-book ghp-import
 
       - name: Build Jupyter Book
-        run: jupyter-book build --clean mybook
+        run: jupyter-book build mybook
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
