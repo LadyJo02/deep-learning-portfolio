@@ -18,11 +18,11 @@ parts:
   - caption: "Exercises"
     chapters:
       - file: exercises/ex1
-        title: "Exercise 1:"
+        title: "Exercise 1"
       - file: exercises/lecture1_reaction
         title: "Lecture Task 1: Reaction Paper – Living in the Age of AI"
 
   - caption: "Projects"
     chapters:
       - file: projects/project1
-        title: "Project 1:"
+        title: "Project 1"

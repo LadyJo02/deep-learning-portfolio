@@ -225,3 +225,21 @@ a:hover { text-decoration: underline; }
 .sd-card {
     margin-bottom: 1.2em !important;
 }
+
+/* --- 9. FIX: Only center homepage --- */
+
+/* Revert normal alignment for all non-homepage pages */
+body:not([data-page="intro"]) .bd-main .bd-content {
+    display: block !important;
+    text-align: left !important;
+    align-items: normal !important;
+    flex-direction: unset !important;
+}
+
+/* Ensure text, code, and outputs align left */
+body:not([data-page="intro"]) .jb-article,
+body:not([data-page="intro"]) .jp-OutputArea-output,
+body:not([data-page="intro"]) pre,
+body:not([data-page="intro"]) p {
+    text-align: left !important;
+}

@@ -15,7 +15,7 @@ and submit this in PDF format.
 
 
 
-### 🎬 Reaction Paper
+### Reaction Paper
 
 Honestly, watching the WIRED documentary *“Living in the Age of AI”* made me realize that AI isn’t just some sci-fi concept from the movies — it’s already here, shaping our lives in ways I hadn’t really thought about. The film left me feeling both hopeful and a little bit worried. It showed how AI can transform industries, save lives, and improve accessibility, but also raised serious questions about privacy, job loss, and misinformation.
 
@@ -26,7 +26,7 @@ However, the film also warned of challenges. Automation could replace jobs, and 
 In the end, it reminded me that the most important programming isn’t in code but in the **values** guiding our technology. The future of AI depends not only on what it can do, but on how we choose to use it.
 
 
-### 📎 PDF Version
+###  PDF Version
 
 You can view or download the full paper here:  
 [**SANTOS_Assignment1.pdf**](SANTOS_Assignment1.pdf)
