@@ -3,15 +3,15 @@ name: Deploy Jupyter Book
 on:
   push:
     branches:
-      - main  # Trigger deployment only when pushing to main branch
-  workflow_dispatch:  # Allow manual rebuilds
+      - main
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: write  # Allows the action to push to gh-pages branch
+      contents: write
 
     steps:
       - name: Checkout repository
@@ -21,14 +21,13 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.9'
-          cache: 'pip'  # Automatically cache Python dependencies
+          cache: 'pip'
 
-      # Cache built HTML before rebuild to speed up next runs
       - name: Cache Jupyter Book HTML
         uses: actions/cache@v4
         with:
           path: mybook/_build
-          key: ${{ runner.os }}-jbook-${{ hashFiles('mybook/**/*.ipynb', 'mybook/**/*.md') }}
+          key: ${{ runner.os }}-jbook-${{ hashFiles('mybook/**/*.ipynb', 'mybook/**/*.md', 'mybook/_static/**/*.css') }}
           restore-keys: |
             ${{ runner.os }}-jbook-
 
@@ -39,7 +38,7 @@ jobs:
           pip install jupyter-book ghp-import
 
       - name: Build Jupyter Book
-        run: jupyter-book build mybook
+        run: jupyter-book build --clean mybook
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
