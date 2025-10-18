@@ -27,26 +27,21 @@
 }
 
 /* --- 3. ANIMATED BACKGROUND --- */
-@keyframes move-background {
-  from { transform: translate(0, 0); }
-  to { transform: translate(1000px, 1000px); }
+@keyframes blobMove {
+  0%, 100% { transform: translate(0,0) scale(1); }
+  50% { transform: translate(30px, -30px) scale(1.2); }
 }
 body::before {
-  content: '';
-  width: 200vw;
-  height: 200vh;
+  content: "";
   position: fixed;
-  top: -50%;
-  left: -50%;
+  inset: 0;
   z-index: -1;
-  background-size: 25px 25px;
-  animation: move-background 200s linear infinite;
-  opacity: 0.5;
-  background-image: radial-gradient(#cccccc 1px, transparent 1px);
+  background: radial-gradient(circle at 30% 70%, rgba(0,170,255,0.25), transparent 70%),
+              radial-gradient(circle at 80% 30%, rgba(255,255,255,0.1), transparent 70%);
+  filter: blur(60px);
+  animation: blobMove 30s ease-in-out infinite alternate;
 }
-[data-theme="dark"] body::before {
-  background-image: radial-gradient(#444444 1px, transparent 1px);
-}
+
 
 /* --- 4. GENERAL STYLING --- */
 html, body, .bd-page {
@@ -226,33 +221,13 @@ a:hover { text-decoration: underline; }
     margin-bottom: 1.2em !important;
 }
 
-/* --- 9. FIX: Only center homepage (improved detection) --- */
 
-/* Revert normal alignment for all non-homepage pages */
+/* --- 9. NORMAL PAGE ALIGNMENT --- */
 body:not([data-page="intro"]) .bd-main .bd-content,
-body[data-page]:not([data-page="index"]) .bd-main .bd-content {
-    display: block !important;
-    text-align: left !important;
-    align-items: normal !important;
-    flex-direction: unset !important;
-    justify-content: flex-start !important;
-}
-
-/* Ensure paragraphs, equations, and code align left */
-body:not([data-page="intro"]) .jb-article,
-body:not([data-page="intro"]) .jp-OutputArea-output,
-body:not([data-page="intro"]) pre,
-body:not([data-page="intro"]) p,
-body:not([data-page="intro"]) img,
-body:not([data-page="intro"]) div.text_cell_render {
-    text-align: left !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-}
-
-/* Optional: make sure math equations and images stay aligned */
-body:not([data-page="intro"]) .MathJax,
-body:not([data-page="intro"]) figure {
-    text-align: left !important;
-    margin: 0 auto 1rem 0 !important;
+body[data-page]:not([data-page="intro"]) .bd-main .bd-content {
+  display: block !important;
+  text-align: left !important;
+  align-items: normal !important;
+  flex-direction: unset !important;
+  justify-content: flex-start !important;
 }

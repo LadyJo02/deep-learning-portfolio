@@ -226,33 +226,13 @@ a:hover { text-decoration: underline; }
     margin-bottom: 1.2em !important;
 }
 
-/* --- 9. FIX: Only center homepage (improved detection) --- */
 
-/* Revert normal alignment for all non-homepage pages */
+/* --- 9. NORMAL PAGE ALIGNMENT --- */
 body:not([data-page="intro"]) .bd-main .bd-content,
-body[data-page]:not([data-page="index"]) .bd-main .bd-content {
-    display: block !important;
-    text-align: left !important;
-    align-items: normal !important;
-    flex-direction: unset !important;
-    justify-content: flex-start !important;
-}
-
-/* Ensure paragraphs, equations, and code align left */
-body:not([data-page="intro"]) .jb-article,
-body:not([data-page="intro"]) .jp-OutputArea-output,
-body:not([data-page="intro"]) pre,
-body:not([data-page="intro"]) p,
-body:not([data-page="intro"]) img,
-body:not([data-page="intro"]) div.text_cell_render {
-    text-align: left !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-}
-
-/* Optional: make sure math equations and images stay aligned */
-body:not([data-page="intro"]) .MathJax,
-body:not([data-page="intro"]) figure {
-    text-align: left !important;
-    margin: 0 auto 1rem 0 !important;
+body[data-page]:not([data-page="intro"]) .bd-main .bd-content {
+  display: block !important;
+  text-align: left !important;
+  align-items: normal !important;
+  flex-direction: unset !important;
+  justify-content: flex-start !important;
 }
