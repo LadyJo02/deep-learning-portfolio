@@ -58,7 +58,7 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"TeX": {"equationNumbers": {"autoNumber": "AMS"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "displayMath": [["$$", "$$"], ["\\[", "\\]"]], "tags": "ams", "tagSide": "right"}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'labs/lab2_forward_pass';</script>
     <link rel="icon" href="../_static/logo.png"/>
@@ -104,8 +104,8 @@
          class="form-control"
          name="q"
          id="search-input"
-         placeholder="Search..."
-         aria-label="Search..."
+         placeholder="Search this book..."
+         aria-label="Search this book..."
          autocomplete="off"
          autocorrect="off"
          autocapitalize="off"
@@ -175,6 +175,14 @@
  </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    <center>(●’◡’●)</center>
+                </a>
+            </li>
+        </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Laboratory Activities</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Lab 2: Implementing a Forward Pass</a></li>
@@ -368,8 +376,8 @@ document.write(`
 <h2>Given Parameters<a class="headerlink" href="#given-parameters" title="Link to this heading">#</a></h2>
 <p>[
 x =</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0fc91262-48f4-497d-9a96-6e7577f1c753">
-<span class="eqno">(1)<a class="headerlink" href="#equation-0fc91262-48f4-497d-9a96-6e7577f1c753" title="Permalink to this equation">#</a></span>\[\begin{bmatrix}
+<div class="amsmath math notranslate nohighlight" id="equation-e9a475e2-6d77-4d9a-b925-b5d73ca27462">
+<span class="eqno">(1)<a class="headerlink" href="#equation-e9a475e2-6d77-4d9a-b925-b5d73ca27462" title="Permalink to this equation">#</a></span>\[\begin{bmatrix}
 1 \\ 
 0 \\ 
 1
@@ -398,8 +406,8 @@ w_{15} = -0.5 &amp; w_{16} = 0.2
 <h2>Output Weights<a class="headerlink" href="#output-weights" title="Link to this heading">#</a></h2>
 <p>[
 W_o =</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a5c81f05-6e72-4dae-9082-364a4699e52d">
-<span class="eqno">(2)<a class="headerlink" href="#equation-a5c81f05-6e72-4dae-9082-364a4699e52d" title="Permalink to this equation">#</a></span>\[\begin{bmatrix}
+<div class="amsmath math notranslate nohighlight" id="equation-2e1bc142-5dc7-4033-9bdb-9c7b2c28339e">
+<span class="eqno">(2)<a class="headerlink" href="#equation-2e1bc142-5dc7-4033-9bdb-9c7b2c28339e" title="Permalink to this equation">#</a></span>\[\begin{bmatrix}
 w_{21} = -0.3 \\
 w_{22} = -0.2
 \end{bmatrix}\]</div>
@@ -621,6 +629,10 @@ By Joanna Reyda D. Santos
   
   <div class="footer-item">
     
+<div class="extra_footer">
+  <p>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>.</p>
+
+</div>
   </div>
   
 </div>
