@@ -32,10 +32,10 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=0bcb1fa4" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=04b5c046" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -102,8 +102,8 @@
          class="form-control"
          name="q"
          id="search-input"
-         placeholder="Search this book..."
-         aria-label="Search this book..."
+         placeholder="Search..."
+         aria-label="Search..."
          autocomplete="off"
          autocorrect="off"
          autocapitalize="off"
@@ -173,14 +173,6 @@
  </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        
-        <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1">
-                <a class="reference internal" href="../intro.html">
-                    <center>(●’◡’●)</center>
-                </a>
-            </li>
-        </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Laboratory Activities</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="lab2_forward_pass.html">Lab 2: Implementing a Forward Pass</a></li>
@@ -190,11 +182,11 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Exercises</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../exercises/ex1.html">Exercise 1: Foundations of Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../exercises/ex1.html">Exercise 1:</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../projects/project1.html">Project: Image Classification with CNNs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projects/project1.html">Project 1:</a></li>
 </ul>
 
     </div>
@@ -236,6 +228,21 @@
         <div class="header-article-item">
 
 <div class="article-header-buttons">
+
+
+<a href="https://github.com/LadyJo02/deep-learning-portfolio" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
 
 
 
@@ -343,6 +350,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#forward-pass">Forward Pass</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#backward-pass">BACKWARD PASS</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reflection">Reflection</a></li>
 </ul>
             </nav>
@@ -360,136 +369,136 @@ document.write(`
 <p>Instruction: Perform a forward and backward propagation in python using the inputs from Laboratory Task 2</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Standard Imports</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import necessary libraries</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2. Define activation function (ReLU) and its derivative</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">relu</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">relu_derivative</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 3. Initialize parameters</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Input and target (from Task 2)</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
-<span class="n">y_true</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">lr</span> <span class="o">=</span> <span class="mf">0.1</span>  <span class="c1"># Increased for a more visible effect in the plot</span>
-<span class="n">hidden_weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">]])</span>
-<span class="n">hidden_biases</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">])</span>
-<span class="n">output_weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">0.3</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">])</span>
-<span class="n">output_bias</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.1</span><span class="p">])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">])</span>
 
-<span class="c1"># --- FORWARD PASS ---</span>
-<span class="c1"># Calculate hidden layer input and activation</span>
-<span class="n">z_hidden</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">hidden_weights</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">hidden_biases</span>
-<span class="n">a_hidden</span> <span class="o">=</span> <span class="n">relu</span><span class="p">(</span><span class="n">z_hidden</span><span class="p">)</span>
+<span class="c1"># Learning rate</span>
+<span class="n">lr</span> <span class="o">=</span> <span class="mf">0.001</span>
 
-<span class="c1"># Calculate output layer input and final prediction</span>
-<span class="n">z_output</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">output_weights</span><span class="p">,</span> <span class="n">a_hidden</span><span class="p">)</span> <span class="o">+</span> <span class="n">output_bias</span>
-<span class="n">y_pred</span> <span class="o">=</span> <span class="n">z_output</span>
+<span class="c1"># ReLU activation and derivative</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">relu</span><span class="p">(</span><span class="n">z</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
 
-<span class="c1"># Calculate the MSE loss</span>
-<span class="n">loss</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">y_true</span> <span class="o">-</span> <span class="n">y_pred</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">relu_deriv</span><span class="p">(</span><span class="n">z</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">z</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
 
-<span class="c1"># --- BACKWARD PASS ---</span>
-<span class="c1"># Gradient of the loss with respect to the prediction (d_L/d_ypred)</span>
-<span class="c1"># The derivative of 0.5 * (y_pred - y_true)^2 is (y_pred - y_true)</span>
-<span class="n">d_loss_d_ypred</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_pred</span> <span class="o">-</span> <span class="n">y_true</span><span class="p">)</span>
+<span class="c1"># Initialize weights (same as Task 2)</span>
+<span class="n">W_hidden</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.4</span><span class="p">,</span>  <span class="mf">0.1</span><span class="p">],</span>
+    <span class="p">[</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">]</span>
+<span class="p">])</span>  <span class="c1"># shape (3,2)</span>
 
-<span class="c1"># Gradients for the output layer</span>
-<span class="n">gradient_w_output</span> <span class="o">=</span> <span class="n">d_loss_d_ypred</span> <span class="o">*</span> <span class="n">a_hidden</span>
-<span class="n">gradient_b_output</span> <span class="o">=</span> <span class="n">d_loss_d_ypred</span> <span class="o">*</span> <span class="mi">1</span>
+<span class="n">W_output</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="o">-</span><span class="mf">0.3</span><span class="p">],</span>
+    <span class="p">[</span><span class="o">-</span><span class="mf">0.2</span><span class="p">]</span>
+<span class="p">])</span>  <span class="c1"># shape (2,1)</span>
 
-<span class="c1"># Propagate the error back to the hidden layer&#39;s activation (d_L/d_a_hidden)</span>
-<span class="n">d_loss_d_a_hidden</span> <span class="o">=</span> <span class="n">d_loss_d_ypred</span> <span class="o">*</span> <span class="n">output_weights</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="c1"># Biases [θ1, θ2, θ3]</span>
+<span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="forward-pass">
+<h2>Forward Pass<a class="headerlink" href="#forward-pass" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 1: Compute hidden layer pre-activation</span>
+<span class="n">z_hidden</span> <span class="o">=</span> <span class="n">x</span> <span class="o">@</span> <span class="n">W_hidden</span> <span class="o">+</span> <span class="n">theta</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>     <span class="c1"># (1x3) dot (3x2) + bias(2,)</span>
 
-<span class="c1"># Propagate through the ReLU activation function (d_L/d_z_hidden)</span>
-<span class="n">d_loss_d_z_hidden</span> <span class="o">=</span> <span class="n">d_loss_d_a_hidden</span> <span class="o">*</span> <span class="n">relu_derivative</span><span class="p">(</span><span class="n">z_hidden</span><span class="p">)</span>
+<span class="c1"># Step 2: Apply ReLU activation</span>
+<span class="n">h</span> <span class="o">=</span> <span class="n">relu</span><span class="p">(</span><span class="n">z_hidden</span><span class="p">)</span>                      <span class="c1"># hidden activations</span>
 
-<span class="c1"># Gradients for the hidden layer weights (d_L/d_w_hidden)</span>
-<span class="c1"># The order np.outer(d_loss_d_z_hidden, x) is crucial for the correct (2, 3) shape</span>
-<span class="n">gradient_w_hidden</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">d_loss_d_z_hidden</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
-<span class="n">gradient_b_hidden</span> <span class="o">=</span> <span class="n">d_loss_d_z_hidden</span>
+<span class="c1"># Step 3: Compute output layer pre-activation and activation</span>
+<span class="n">z_out</span> <span class="o">=</span> <span class="n">h</span> <span class="o">@</span> <span class="n">W_output</span> <span class="o">+</span> <span class="n">theta</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>         <span class="c1"># (1x2) dot (2x1) + bias</span>
+<span class="n">y_hat</span> <span class="o">=</span> <span class="n">relu</span><span class="p">(</span><span class="n">z_out</span><span class="p">)</span>                     <span class="c1"># output activation</span>
 
-<span class="c1"># --- UPDATE WEIGHTS AND BIASES ---</span>
-<span class="n">output_weights_updated</span> <span class="o">=</span> <span class="n">output_weights</span> <span class="o">-</span> <span class="n">lr</span> <span class="o">*</span> <span class="n">gradient_w_output</span>
-<span class="n">output_bias_updated</span> <span class="o">=</span> <span class="n">output_bias</span> <span class="o">-</span> <span class="n">lr</span> <span class="o">*</span> <span class="n">gradient_b_output</span>
-<span class="n">hidden_weights_updated</span> <span class="o">=</span> <span class="n">hidden_weights</span> <span class="o">-</span> <span class="n">lr</span> <span class="o">*</span> <span class="n">gradient_w_hidden</span>
-<span class="n">hidden_biases_updated</span> <span class="o">=</span> <span class="n">hidden_biases</span> <span class="o">-</span> <span class="n">lr</span> <span class="o">*</span> <span class="n">gradient_b_hidden</span>
+<span class="c1"># Step 4: Compute mean squared error</span>
+<span class="n">loss</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">y_hat</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Forward pass prediction:&quot;</span><span class="p">,</span> <span class="n">y_hat</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Loss:&quot;</span><span class="p">,</span> <span class="n">loss</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Forward pass prediction: [0.08]
+Loss: [0.4232]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="backward-pass">
+<h2>BACKWARD PASS<a class="headerlink" href="#backward-pass" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 1: Compute output layer gradients</span>
+<span class="n">dL_dyhat</span> <span class="o">=</span> <span class="n">y_hat</span> <span class="o">-</span> <span class="n">y</span>                     <span class="c1"># derivative of error wrt predicted output</span>
+<span class="n">dyhat_dzout</span> <span class="o">=</span> <span class="n">relu_deriv</span><span class="p">(</span><span class="n">z_out</span><span class="p">)</span>          <span class="c1"># derivative of activation</span>
+<span class="n">dL_dzout</span> <span class="o">=</span> <span class="n">dL_dyhat</span> <span class="o">*</span> <span class="n">dyhat_dzout</span>        <span class="c1"># chain rule</span>
+
+<span class="c1"># Step 2: Output weights and bias gradient</span>
+<span class="n">dL_dW_output</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">dL_dzout</span>
+<span class="n">dL_dtheta3</span> <span class="o">=</span> <span class="n">dL_dzout</span>
+
+<span class="c1"># Step 3: Backpropagate to hidden layer</span>
+<span class="n">dzout_dh</span> <span class="o">=</span> <span class="n">W_output</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>            
+<span class="n">dL_dh</span> <span class="o">=</span> <span class="n">dL_dzout</span> <span class="o">*</span> <span class="n">dzout_dh</span>
+<span class="n">dh_dz_hidden</span> <span class="o">=</span> <span class="n">relu_deriv</span><span class="p">(</span><span class="n">z_hidden</span><span class="p">)</span>
+<span class="n">dL_dz_hidden</span> <span class="o">=</span> <span class="n">dL_dh</span> <span class="o">*</span> <span class="n">dh_dz_hidden</span>
+
+<span class="c1"># Step 4: Hidden weights and bias gradients</span>
+<span class="n">dL_dW_hidden</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dL_dz_hidden</span><span class="p">)</span>
+<span class="n">dL_dtheta_hidden</span> <span class="o">=</span> <span class="n">dL_dz_hidden</span>        
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 4. Print results</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Initial Prediction: </span><span class="si">{</span><span class="n">y_pred</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Initial Loss: </span><span class="si">{</span><span class="n">loss</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">30</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Updated Hidden Weights:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">hidden_weights_updated</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Updated Output Weights:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">output_weights_updated</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Updated Hidden Biases:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">hidden_biases_updated</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Updated Output Bias:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">output_bias_updated</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Update weights (Gradient Descent): W = W - lr * dL_dW</span>
+<span class="n">W_output</span> <span class="o">-=</span> <span class="n">lr</span> <span class="o">*</span> <span class="n">dL_dW_output</span>
+<span class="n">theta</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-=</span> <span class="n">lr</span> <span class="o">*</span> <span class="n">dL_dtheta3</span>
+
+<span class="n">W_hidden</span> <span class="o">-=</span> <span class="n">lr</span> <span class="o">*</span> <span class="n">dL_dW_hidden</span>
+<span class="n">theta</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span> <span class="o">-=</span> <span class="n">lr</span> <span class="o">*</span> <span class="n">dL_dtheta_hidden</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Updated W_hidden:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">W_hidden</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Updated W_output:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">W_output</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Updated theta:&quot;</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Initial Prediction: 0.0800
-Initial Loss: 0.4232
-------------------------------
-Updated Hidden Weights:
- [[ 0.2     0.4    -0.5   ]
- [-0.3184  0.1     0.1816]]
-Updated Output Weights:
- [-0.3    -0.1908]
-Updated Hidden Biases:
- [-0.4     0.1816]
-Updated Output Bias:
- [0.192]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Updated W_hidden:
+ [[ 0.2      -0.300184]
+ [ 0.4       0.1     ]
+ [-0.5       0.199816]]
+Updated W_output:
+ [[-0.3     ]
+ [-0.199908]]
+Updated theta: [-0.4       0.199816  0.10092 ]
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 5. Visualization</span>
-<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;w_out_1&#39;</span><span class="p">,</span> <span class="s1">&#39;w_out_2&#39;</span><span class="p">]</span>
-<span class="n">x_axis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x_axis</span> <span class="o">-</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">output_weights</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Initial Weights&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;skyblue&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x_axis</span> <span class="o">+</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">output_weights_updated</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Updated Weights&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;salmon&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">x_axis</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Weight Value&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Output Weights Before and After One Step of Backpropagation&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/914dfe801abf30711d27e38c6d1abf5e3b1c0da79cda72e33440e80883a9d4a7.png" src="../_images/914dfe801abf30711d27e38c6d1abf5e3b1c0da79cda72e33440e80883a9d4a7.png" />
-</div>
-</div>
+</section>
 <section id="reflection">
 <h2>Reflection<a class="headerlink" href="#reflection" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p><strong>Backpropagation</strong> is the core algorithm that allows a neural network to learn from its errors.</p></li>
-<li><p>It works by propagating the loss <strong>backward</strong> through the network to calculate the <strong>gradient</strong> for each weight and bias using the chain rule.</p></li>
-<li><p>These gradients measure how much each parameter contributed to the overall error.</p></li>
-<li><p>The bar chart visualization clearly shows the result: the weights are adjusted in a direction that will reduce the error. The size of this adjustment is controlled by the <strong>learning rate</strong>.</p></li>
-</ul>
+<p>In this lab, I applied both forward and backward propagation steps using NumPy. I learned how gradients flow backward from the output layer to the hidden layer and how each parameter (weights and biases) adjusts slightly to minimize the loss. Seeing the numerical updates in each step makes it clearer how learning actually happens in neural networks through gradient descent.</p>
 </section>
 </section>
 
@@ -557,6 +566,8 @@ Updated Output Bias:
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#forward-pass">Forward Pass</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#backward-pass">BACKWARD PASS</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reflection">Reflection</a></li>
 </ul>
   </nav></div>
@@ -595,10 +606,6 @@ By Joanna Reyda D. Santos
   
   <div class="footer-item">
     
-<div class="extra_footer">
-  <p>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>.</p>
-
-</div>
   </div>
   
 </div>

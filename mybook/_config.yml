@@ -28,7 +28,20 @@ html:
 repository:
   url: https://github.com/LadyJo02/deep-learning-portfolio
   branch: main
+  path_to_book: mybook
   use_repository_button: true
+  use_issues_button: false
+  use_edit_page_button: false
+
+sphinx:
+  config:
+    html_theme_options:
+      repository_url: "https://github.com/LadyJo02/deep-learning-portfolio"
+      repository_branch: main
+      path_to_docs: "mybook"
+      use_repository_button: true
+      use_issues_button: false
+      use_edit_page_button: false
 
 parse:
   myst_enable_extensions:
