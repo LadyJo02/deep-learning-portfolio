@@ -13,7 +13,6 @@ html:
   css_files:
     - "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     - custom.css
-
   footer_items:
     - text: "Copyright © 2025, Joanna Reyda D. Santos"
   extra_footer: |
@@ -24,8 +23,13 @@ repository:
   branch: main
   use_repository_button: true
 
+parse:
+  myst_enable_extensions:
+    - amsmath
+    - dollarmath
+
 sphinx:
   config:
     html_theme_options:
       use_light_mode_button: true
-    mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js   # 👈 ADD THIS LINE
+    mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
