@@ -27,20 +27,28 @@
 }
 
 /* --- 3. ANIMATED BACKGROUND --- */
-@keyframes blobMove {
-  0%, 100% { transform: translate(0,0) scale(1); }
-  50% { transform: translate(30px, -30px) scale(1.2); }
+@keyframes blobMotion {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(60px, -40px) scale(1.1); }
 }
+
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -1;
-  background: radial-gradient(circle at 30% 70%, rgba(0,170,255,0.25), transparent 70%),
-              radial-gradient(circle at 80% 30%, rgba(255,255,255,0.1), transparent 70%);
+  background:
+    radial-gradient(circle at 30% 70%, rgba(0,170,255,0.25), transparent 60%),
+    radial-gradient(circle at 80% 30%, rgba(255,255,255,0.2), transparent 70%);
   filter: blur(60px);
-  animation: blobMove 30s ease-in-out infinite alternate;
+  animation: blobMotion 35s ease-in-out infinite alternate;
 }
+[data-theme="dark"] body::before {
+  background:
+    radial-gradient(circle at 30% 70%, rgba(0,255,255,0.15), transparent 70%),
+    radial-gradient(circle at 70% 20%, rgba(255,255,255,0.05), transparent 70%);
+}
+
 
 
 /* --- 4. GENERAL STYLING --- */
@@ -222,12 +230,5 @@ a:hover { text-decoration: underline; }
 }
 
 
-/* --- 9. NORMAL PAGE ALIGNMENT --- */
-body:not([data-page="intro"]) .bd-main .bd-content,
-body[data-page]:not([data-page="intro"]) .bd-main .bd-content {
-  display: block !important;
-  text-align: left !important;
-  align-items: normal !important;
-  flex-direction: unset !important;
-  justify-content: flex-start !important;
-}
+
+
