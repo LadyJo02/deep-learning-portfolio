@@ -12,13 +12,17 @@ parts:
         title: "Lab 4: Building a Regression Model in PyTorch"
       - file: labs/lab5_tensor_manipulations
         title: "Lab 5: Tensor Manipulations"
-        
+      - file: labs/lab6_cnn_architecture
+        title: "Lab 6: CNN Architecture in PyTorch"
+
   - caption: "Exercises"
     chapters:
       - file: exercises/ex1
-        title: "Exercise 1: Foundations of Neural Networks"
+        title: "Exercise 1:"
+      - file: exercises/lecture1_reaction
+        title: "Lecture Task 1: Reaction Paper – Living in the Age of AI"
 
   - caption: "Projects"
     chapters:
       - file: projects/project1
-        title: "Project: Image Classification with CNNs"
+        title: "Project 1:"
