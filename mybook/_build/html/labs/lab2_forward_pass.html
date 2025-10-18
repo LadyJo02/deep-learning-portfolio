@@ -58,7 +58,7 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"TeX": {"equationNumbers": {"autoNumber": "AMS"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'labs/lab2_forward_pass';</script>
     <link rel="icon" href="../_static/logo.png"/>
@@ -104,8 +104,8 @@
          class="form-control"
          name="q"
          id="search-input"
-         placeholder="Search..."
-         aria-label="Search..."
+         placeholder="Search this book..."
+         aria-label="Search this book..."
          autocomplete="off"
          autocorrect="off"
          autocapitalize="off"
@@ -175,6 +175,14 @@
  </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    <center>(●’◡’●)</center>
+                </a>
+            </li>
+        </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Laboratory Activities</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Lab 2: Implementing a Forward Pass</a></li>
@@ -338,6 +346,8 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#given-parameters">Given Parameters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#output-weights">Output Weights</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#biases">Biases</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution">Solution</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hidden-layer">Hidden Layer</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#output-layer">Output Layer</a></li>
@@ -366,8 +376,8 @@ document.write(`
 <h2>Given Parameters<a class="headerlink" href="#given-parameters" title="Link to this heading">#</a></h2>
 <p>[
 x =</p>
-<div class="amsmath math notranslate nohighlight" id="equation-dba19b2d-bd28-4a8e-ad8d-f295178f2f29">
-<span class="eqno">(1)<a class="headerlink" href="#equation-dba19b2d-bd28-4a8e-ad8d-f295178f2f29" title="Permalink to this equation">#</a></span>\[\begin{bmatrix}
+<div class="amsmath math notranslate nohighlight" id="equation-fe290780-3e15-4c73-978c-2c94fa643b09">
+<span class="eqno">(1)<a class="headerlink" href="#equation-fe290780-3e15-4c73-978c-2c94fa643b09" title="Permalink to this equation">#</a></span>\[\begin{bmatrix}
 1 \\ 
 0 \\ 
 1
@@ -378,24 +388,34 @@ y = [1],
 f(z) = \max(0, z)
 \]
 
-**Hidden Unit Weights**
+---
+
+### Hidden Unit Weights
 
 \[
+W_h =
 \begin{bmatrix}
 w_{11} = 0.2 &amp; w_{12} = -0.3 \\
 w_{13} = 0.4 &amp; w_{14} = 0.1 \\
 w_{15} = -0.5 &amp; w_{16} = 0.2
 \end{bmatrix}\]</div>
 <p>]</p>
-<p><strong>Output Weights</strong></p>
-<p>[</p>
-<div class="amsmath math notranslate nohighlight" id="equation-972763cd-c201-4c8a-bced-33a038bd073e">
-<span class="eqno">(2)<a class="headerlink" href="#equation-972763cd-c201-4c8a-bced-33a038bd073e" title="Permalink to this equation">#</a></span>\[\begin{bmatrix}
+<hr class="docutils" />
+</section>
+<section id="output-weights">
+<h2>Output Weights<a class="headerlink" href="#output-weights" title="Link to this heading">#</a></h2>
+<p>[
+W_o =</p>
+<div class="amsmath math notranslate nohighlight" id="equation-50b3f95c-c07c-46e5-b099-1e03b1634624">
+<span class="eqno">(2)<a class="headerlink" href="#equation-50b3f95c-c07c-46e5-b099-1e03b1634624" title="Permalink to this equation">#</a></span>\[\begin{bmatrix}
 w_{21} = -0.3 \\
 w_{22} = -0.2
 \end{bmatrix}\]</div>
 <p>]</p>
-<p><strong>Biases</strong></p>
+<hr class="docutils" />
+</section>
+<section id="biases">
+<h2>Biases<a class="headerlink" href="#biases" title="Link to this heading">#</a></h2>
 <p>[
 \theta_1 = -0.4, \quad
 \theta_2 = 0.2, \quad
@@ -427,12 +447,17 @@ z_3 = (a_1)(-0.3) + (a_2)(-0.2) + (0.1) = 0.08
 \hat{y} = f(z_3) = f(0.08) = 0.08
 ]</p>
 </section>
+<hr class="docutils" />
 <section id="error-calculation">
 <h3>Error Calculation<a class="headerlink" href="#error-calculation" title="Link to this heading">#</a></h3>
 <p>[
-E = \frac{1}{2}(y - \hat{y})^2 = \frac{1}{2}(1 - 0.08)^2 = 0.4232
+E = \frac{1}{2}(y - \hat{y})^2
+]
+[
+E = \frac{1}{2}(1 - 0.08)^2 = 0.4232
 ]</p>
 </section>
+<hr class="docutils" />
 <section id="final-results">
 <h3>Final Results<a class="headerlink" href="#final-results" title="Link to this heading">#</a></h3>
 <p>[
@@ -557,6 +582,8 @@ is far from the target (1), which will later be corrected through backpropagatio
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#given-parameters">Given Parameters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#output-weights">Output Weights</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#biases">Biases</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution">Solution</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hidden-layer">Hidden Layer</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#output-layer">Output Layer</a></li>
@@ -602,6 +629,10 @@ By Joanna Reyda D. Santos
   
   <div class="footer-item">
     
+<div class="extra_footer">
+  <p>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>.</p>
+
+</div>
   </div>
   
 </div>

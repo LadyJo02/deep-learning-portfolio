@@ -17,6 +17,13 @@ html:
     - text: "Copyright © 2025, Joanna Reyda D. Santos"
   extra_footer: |
     <p>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>.</p>
+  mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  mathjax_config:
+    tex:
+      inlineMath: [["$", "$"], ["\\(", "\\)"]]
+      displayMath: [["$$", "$$"], ["\\[", "\\]"]]
+      tags: "ams"
+      tagSide: "right"
 
 repository:
   url: https://github.com/LadyJo02/deep-learning-portfolio
@@ -29,13 +36,3 @@ parse:
     - dollarmath
     - colon_fence
     - deflist
-
-sphinx:
-  config:
-    mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
-    mathjax_config:
-      tex:
-        inlineMath: [["$", "$"], ["\\(", "\\)"]]
-        displayMath: [["$$", "$$"], ["\\[", "\\]"]]
-        tags: "ams"
-        tagSide: "right"
