@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=0bcb1fa4" />
@@ -346,6 +346,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#given-parameters">Given Parameters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hidden-unit-weights">Hidden Unit Weights</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#output-weights">Output Weights</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#biases">Biases</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution">Solution</a><ul class="nav section-nav flex-column">
@@ -374,10 +375,10 @@ document.write(`
 <p><strong>Instruction:</strong> Perform a single forward pass and compute for the error.</p>
 <section id="given-parameters">
 <h2>Given Parameters<a class="headerlink" href="#given-parameters" title="Link to this heading">#</a></h2>
-<p>[
-x =</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fe290780-3e15-4c73-978c-2c94fa643b09">
-<span class="eqno">(1)<a class="headerlink" href="#equation-fe290780-3e15-4c73-978c-2c94fa643b09" title="Permalink to this equation">#</a></span>\[\begin{bmatrix}
+<div class="math notranslate nohighlight">
+\[\begin{split}
+x = 
+\begin{bmatrix}
 1 \\ 
 0 \\ 
 1
@@ -386,83 +387,87 @@ x =</p>
 y = [1],
 \quad
 f(z) = \max(0, z)
-\]
-
----
-
-### Hidden Unit Weights
-
-\[
+\end{split}\]</div>
+</section>
+<section id="hidden-unit-weights">
+<h2>Hidden Unit Weights<a class="headerlink" href="#hidden-unit-weights" title="Link to this heading">#</a></h2>
+<div class="math notranslate nohighlight">
+\[\begin{split}
 W_h =
 \begin{bmatrix}
 w_{11} = 0.2 &amp; w_{12} = -0.3 \\
 w_{13} = 0.4 &amp; w_{14} = 0.1 \\
 w_{15} = -0.5 &amp; w_{16} = 0.2
-\end{bmatrix}\]</div>
-<p>]</p>
-<hr class="docutils" />
+\end{bmatrix}
+\end{split}\]</div>
 </section>
 <section id="output-weights">
 <h2>Output Weights<a class="headerlink" href="#output-weights" title="Link to this heading">#</a></h2>
-<p>[
-W_o =</p>
-<div class="amsmath math notranslate nohighlight" id="equation-50b3f95c-c07c-46e5-b099-1e03b1634624">
-<span class="eqno">(2)<a class="headerlink" href="#equation-50b3f95c-c07c-46e5-b099-1e03b1634624" title="Permalink to this equation">#</a></span>\[\begin{bmatrix}
+<div class="math notranslate nohighlight">
+\[\begin{split}
+W_o =
+\begin{bmatrix}
 w_{21} = -0.3 \\
 w_{22} = -0.2
-\end{bmatrix}\]</div>
-<p>]</p>
-<hr class="docutils" />
+\end{bmatrix}
+\end{split}\]</div>
 </section>
 <section id="biases">
 <h2>Biases<a class="headerlink" href="#biases" title="Link to this heading">#</a></h2>
-<p>[
+<div class="math notranslate nohighlight">
+\[
 \theta_1 = -0.4, \quad
 \theta_2 = 0.2, \quad
 \theta_3 = 0.1
-]</p>
+\]</div>
 </section>
 <section id="solution">
 <h2>Solution<a class="headerlink" href="#solution" title="Link to this heading">#</a></h2>
 <section id="hidden-layer">
 <h3>Hidden Layer<a class="headerlink" href="#hidden-layer" title="Link to this heading">#</a></h3>
 <p>Compute each hidden unit pre-activation:</p>
-<p>[
+<div class="math notranslate nohighlight">
+\[
 z_1 = (1)(0.2) + (0)(0.4) + (1)(-0.5) + (-0.4) = -0.7
-]
-[
+\]</div>
+<div class="math notranslate nohighlight">
+\[
 z_2 = (1)(-0.3) + (0)(0.1) + (1)(0.2) + (0.2) = 0.1
-]</p>
+\]</div>
 <p>Apply activation ( a_i = f(z_i) = \max(0, z_i) ):</p>
-<p>[
+<div class="math notranslate nohighlight">
+\[
 a_1 = f(-0.7) = 0, \quad a_2 = f(0.1) = 0.1
-]</p>
+\]</div>
 </section>
 <section id="output-layer">
 <h3>Output Layer<a class="headerlink" href="#output-layer" title="Link to this heading">#</a></h3>
-<p>[
+<div class="math notranslate nohighlight">
+\[
 z_3 = (a_1)(-0.3) + (a_2)(-0.2) + (0.1) = 0.08
-]
-[
+\]</div>
+<div class="math notranslate nohighlight">
+\[
 \hat{y} = f(z_3) = f(0.08) = 0.08
-]</p>
+\]</div>
 </section>
-<hr class="docutils" />
 <section id="error-calculation">
 <h3>Error Calculation<a class="headerlink" href="#error-calculation" title="Link to this heading">#</a></h3>
-<p>[
+<div class="math notranslate nohighlight">
+\[
 E = \frac{1}{2}(y - \hat{y})^2
-]
-[
+\]</div>
+<div class="math notranslate nohighlight">
+\[
 E = \frac{1}{2}(1 - 0.08)^2 = 0.4232
-]</p>
+\]</div>
 </section>
-<hr class="docutils" />
 <section id="final-results">
 <h3>Final Results<a class="headerlink" href="#final-results" title="Link to this heading">#</a></h3>
-<p>[
+<div class="math notranslate nohighlight">
+\[
 \hat{y} = 0.08, \quad E = 0.4232
-]</p>
+\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -582,6 +587,7 @@ is far from the target (1), which will later be corrected through backpropagatio
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#given-parameters">Given Parameters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hidden-unit-weights">Hidden Unit Weights</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#output-weights">Output Weights</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#biases">Biases</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution">Solution</a><ul class="nav section-nav flex-column">
