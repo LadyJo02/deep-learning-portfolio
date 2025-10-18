@@ -35,7 +35,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=0bcb1fa4" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=04b5c046" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -102,8 +102,8 @@
          class="form-control"
          name="q"
          id="search-input"
-         placeholder="Search this book..."
-         aria-label="Search this book..."
+         placeholder="Search..."
+         aria-label="Search..."
          autocomplete="off"
          autocorrect="off"
          autocapitalize="off"
@@ -173,14 +173,6 @@
  </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        
-        <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1">
-                <a class="reference internal" href="../intro.html">
-                    <center>(●’◡’●)</center>
-                </a>
-            </li>
-        </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Laboratory Activities</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="lab2_forward_pass.html">Lab 2: Implementing a Forward Pass</a></li>
@@ -236,6 +228,21 @@
         <div class="header-article-item">
 
 <div class="article-header-buttons">
+
+
+<a href="https://github.com/LadyJo02/deep-learning-portfolio" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
 
 
 
@@ -461,34 +468,34 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch [100/1000] - Loss: 0.027448
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch [100/1000] - Loss: 0.024690
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch [200/1000] - Loss: 0.033315
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch [200/1000] - Loss: 0.026358
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch [300/1000] - Loss: 0.039124
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch [300/1000] - Loss: 0.016941
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch [400/1000] - Loss: 0.037550
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch [400/1000] - Loss: 0.031828
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch [500/1000] - Loss: 0.049827
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch [500/1000] - Loss: 0.035239
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch [600/1000] - Loss: 0.008527
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch [600/1000] - Loss: 0.066997
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch [700/1000] - Loss: 0.010145
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch [700/1000] - Loss: 0.018350
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch [800/1000] - Loss: 0.021527
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch [800/1000] - Loss: 0.018962
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch [900/1000] - Loss: 0.014059
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch [900/1000] - Loss: 0.040942
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch [1000/1000] - Loss: 0.022966
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch [1000/1000] - Loss: 0.037524
 </pre></div>
 </div>
 </div>
@@ -515,10 +522,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Final Test MSE Loss: 0.036309
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Final Test MSE Loss: 0.036204
 </pre></div>
 </div>
-<img alt="../_images/d4cf92a2f4b996d15bb44a7bda2b943298469809838d03aa4f9cfbf1a05a17ea.png" src="../_images/d4cf92a2f4b996d15bb44a7bda2b943298469809838d03aa4f9cfbf1a05a17ea.png" />
+<img alt="../_images/4370c743264007d5a54a7c4b5b8b40b42c8ab6873acc640a0694a45d26dadb61.png" src="../_images/4370c743264007d5a54a7c4b5b8b40b42c8ab6873acc640a0694a45d26dadb61.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -550,26 +557,26 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sample Predictions:
- tensor([[ 0.4344],
-        [ 0.2003],
-        [-0.3753],
-        [-0.8272],
-        [-1.2181],
-        [ 1.6882],
-        [ 0.1350],
-        [-1.2662]])
+ tensor([[-1.4379],
+        [-1.1648],
+        [ 0.1433],
+        [-0.4884],
+        [ 0.3051],
+        [ 1.4197],
+        [-1.2469],
+        [ 0.7241]])
 Actual Targets:
- tensor([[ 0.3564],
-        [ 0.2784],
-        [-0.5152],
-        [-0.6793],
-        [-1.3306],
-        [ 1.6950],
-        [ 0.0029],
-        [-1.2108]])
+ tensor([[-1.4778],
+        [-0.9197],
+        [ 0.2939],
+        [-0.4796],
+        [ 0.2215],
+        [ 1.4087],
+        [-1.1324],
+        [ 0.5324]])
 </pre></div>
 </div>
-<img alt="../_images/4b39f0640f5602d03ba91d09638428b02698c4c43dd36b9857836635b590c8a4.png" src="../_images/4b39f0640f5602d03ba91d09638428b02698c4c43dd36b9857836635b590c8a4.png" />
+<img alt="../_images/2e66c736b046dae445b89015cce512cae2ac758d2b65f14a267ee4e70eec58a5.png" src="../_images/2e66c736b046dae445b89015cce512cae2ac758d2b65f14a267ee4e70eec58a5.png" />
 </div>
 </div>
 <section id="reflection">
@@ -680,10 +687,6 @@ By Joanna Reyda D. Santos
   
   <div class="footer-item">
     
-<div class="extra_footer">
-  <p>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>.</p>
-
-</div>
   </div>
   
 </div>

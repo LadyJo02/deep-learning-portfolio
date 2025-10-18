@@ -164,3 +164,64 @@ a:hover { text-decoration: underline; }
 .icon-labs { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10 22h4M8.5 22l1.7-5.1a2 2 0 0 1 1.8-1.4l2 0a2 2 0 0 1 1.8 1.4L17.5 22M7 10h10M7 10l1.1-5a2 2 0 0 1 2-1.5h1.8a2 2 0 0 1 2 1.5L15 10'%3E%3C/path%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10 22h4M8.5 22l1.7-5.1a2 2 0 0 1 1.8-1.4l2 0a2 2 0 0 1 1.8 1.4L17.5 22M7 10h10M7 10l1.1-5a2 2 0 0 1 2-1.5h1.8a2 2 0 0 1 2 1.5L15 10'%3E%3C/path%3E%3C/svg%3E");}
 .icon-exercises { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 20h9'%3E%3C/path%3E%3Cpath d='M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z'%3E%3C/path%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 20h9'%3E%3C/path%3E%3Cpath d='M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z'%3E%3C/path%3E%3C/svg%3E");}
 .icon-projects { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.3.05-3.1S5.21 15.24 4.5 16.5z'%3E%3C/path%3E%3Cpath d='M12.5 12.5a2.5 2.5 0 0 1-3.54-3.54 2.5 2.5 0 0 1 3.54 3.54z'%3E%3C/path%3E%3Cpath d='M18 18c-5.94 3-9 2-9-2s1-3.06 2-9c1.4-8.58 9-9 9-9s.42 7.6-9 9'%3E%3C/path%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.3.05-3.1S5.21 15.24 4.5 16.5z'%3E%3C/path%3E%3Cpath d='M12.5 12.5a2.5 2.5 0 0 1-3.54-3.54 2.5 2.5 0 0 1 3.54 3.54z'%3E%3C/path%3E%3Cpath d='M18 18c-5.94 3-9 2-9-2s1-3.06 2-9c1.4-8.58 9-9 9-9s.42 7.6-9 9'%3E%3C/path%3E%3C/svg%3E");}
+
+/* --- 6. SIDEBAR LOGO SIZE FIX --- */
+.sidebar-logo {
+    max-width: 80px !important;    /* make smaller, try 70 or 60 if still large */
+    margin: 10px auto !important;  /* center it nicely */
+    border-radius: 12px;           /* optional: soften corners */
+}
+
+/* Reduce sidebar header spacing */
+.bd-sidebar .sidebar-header {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+}
+
+/* --- 7. HOMEPAGE CENTER FIX --- */
+.bd-main .bd-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Center all main intro text and cards */
+.bd-content .welcome-header,
+.bd-content .welcome-subtitle,
+.bd-content .kaomoji,
+.bd-content .sd-card {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Make sure the cards stay centered and responsive */
+.bd-content .sd-card {
+    max-width: 300px;
+    margin-bottom: 1.5em;
+}
+
+/* --- 8. HOMEPAGE SPACING CLEANUP --- */
+
+/* Reduce excess white space below the homepage content */
+.bd-content {
+    margin-bottom: 1.5rem !important;  /* reduce from large default (~5rem) */
+    padding-bottom: 1rem !important;
+}
+
+/* Slightly tighten top spacing for the header section */
+.welcome-header {
+    margin-top: -0.5em !important;  /* was -1em, small adjustment for balance */
+    margin-bottom: 0.3em !important;
+}
+
+/* Make subtitle closer to header */
+.welcome-subtitle {
+    margin-top: 0.5em !important;
+    margin-bottom: 2em !important;
+}
+
+/* Adjust card spacing for better vertical rhythm */
+.sd-card {
+    margin-bottom: 1.2em !important;
+}
