@@ -1,11 +1,12 @@
+```{raw} html
 <div class="homepage">
+```
 
-# <center>(●'◡'●)</center>
+<center>(●'◡'●)</center>
 
-# <span class="welcome-header">hi! i'm <span class="accent">Joanna</span></span>
+<span class="welcome-header">hi! i'm <span class="accent">Joanna</span></span>
 
 exploring the world of data science and deep learning
-
 
 ---
 
@@ -38,5 +39,6 @@ exploring the world of data science and deep learning
 
 ::::
 
-
+```{raw} html
 </div>
+```
