@@ -227,4 +227,15 @@ a:hover { text-decoration: underline; }
     display: block !important;   /* reset flex layout */
 }
 
+/* --- FORCE NORMAL LAYOUT FOR ALL NON-HOMEPAGE CONTENT --- */
+body:not(.homepage) .bd-main .bd-content,
+.bd-main .bd-content:not(.homepage) {
+    display: block !important;
+    text-align: left !important;
+    align-items: unset !important;
+    justify-content: unset !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
 
