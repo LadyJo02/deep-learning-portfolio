@@ -43,6 +43,9 @@ sphinx:
       use_issues_button: false
       use_edit_page_button: false
 
+    html_static_path:
+      - "_static"
+
 parse:
   myst_enable_extensions:
     - amsmath
