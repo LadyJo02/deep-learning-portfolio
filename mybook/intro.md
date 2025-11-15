@@ -1,12 +1,11 @@
+<div class="homepage">
+
 # <center>(●'◡'●)</center>
 
-<div class="welcome-header">
-hi! i'm <span class="accent">Joanna</span>
-</div>
+# <span class="welcome-header">hi! i'm <span class="accent">Joanna</span></span>
 
-<div class="welcome-subtitle">
 exploring the world of data science and deep learning
-</div>
+
 
 ---
 
@@ -38,3 +37,6 @@ exploring the world of data science and deep learning
 :::
 
 ::::
+
+
+</div>

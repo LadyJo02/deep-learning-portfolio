@@ -109,7 +109,8 @@ a:hover { text-decoration: underline; }
 }
 .welcome-header .accent { color: var(--accent-color); }
 .welcome-subtitle { text-align: center; font-size: 1.2rem; color: var(--text-color); margin-bottom: 3em; }
-.sd-card {
+.homepage .sd-card {
+  margin-bottom: 1.2em !important;
   background-color: var(--content-bg-color); /* Match card background */
   border: 1px solid var(--border-color);
   border-radius: 16px;
@@ -181,30 +182,8 @@ a:hover { text-decoration: underline; }
     padding-bottom: 0.5rem !important;
 }
 
-/* --- 7. HOMEPAGE CENTER FIX --- */
-.bd-main .bd-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
 
-/* Center all main intro text and cards */
-.bd-content .welcome-header,
-.bd-content .welcome-subtitle,
-.bd-content .kaomoji,
-.bd-content .sd-card {
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* Make sure the cards stay centered and responsive */
-.bd-content .sd-card {
-    max-width: 300px;
-    margin-bottom: 1.5em;
-}
-
-/* --- 8. HOMEPAGE SPACING CLEANUP --- */
+/* --- 7. HOMEPAGE SPACING CLEANUP --- */
 
 /* Reduce excess white space below the homepage content */
 .bd-content {
@@ -224,11 +203,28 @@ a:hover { text-decoration: underline; }
     margin-bottom: 2em !important;
 }
 
-/* Adjust card spacing for better vertical rhythm */
-.sd-card {
-    margin-bottom: 1.2em !important;
+
+/* --- HOMEPAGE-ONLY CENTERED LAYOUT --- */
+.homepage {
+    text-align: center;
 }
 
+/* Center only the elements inside the homepage */
+.homepage .welcome-header,
+.homepage .welcome-subtitle,
+.homepage .kaomoji,
+.homepage .sd-card,
+.homepage .grid,
+.homepage .grid-item-card {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
 
+/* --- DEFAULT CONTENT PAGES (LABS, EXERCISES, PROJECTS) --- */
+.bd-content {
+    text-align: left !important;
+    display: block !important;   /* reset flex layout */
+}
 
 
