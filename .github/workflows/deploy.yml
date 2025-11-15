@@ -23,14 +23,6 @@ jobs:
           python-version: '3.9'
           cache: 'pip'
 
-      - name: Cache Jupyter Book HTML
-        uses: actions/cache@v4
-        with:
-          path: mybook/_build
-          key: ${{ runner.os }}-jbook-${{ hashFiles('mybook/**/*.ipynb', 'mybook/**/*.md', 'mybook/_static/**/*.css') }}
-          restore-keys: |
-            ${{ runner.os }}-jbook-
-
       - name: Upgrade pip and install dependencies
         run: |
           python -m pip install --upgrade pip
