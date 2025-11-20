@@ -21,19 +21,18 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.9'
-          cache: 'pip'
 
-      - name: Upgrade pip and install dependencies
+      - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r mybook/requirements.txt
           pip install jupyter-book ghp-import
+          if [ -f mybook/requirements.txt ]; then pip install -r mybook/requirements.txt; fi
 
       - name: Build Jupyter Book
-        run: jupyter-book build mybook
+        run: jupyter-book build mybook --verbose
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./mybook/_build/html
+          publish_dir: mybook/_build/html
