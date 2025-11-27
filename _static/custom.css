@@ -1,0 +1,241 @@
+/* --- 1. FONT IMPORT --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Quicksand:wght@500;700&display=swap');
+
+/* --- 2. THEME VARIABLES --- */
+:root {
+  /* Light Mode (Default) */
+  --page-bg-color: #f8faff;
+  --content-bg-color: #ffffff;
+  --text-color: #212529;
+  --header-color: #000000;
+  --border-color: #dee2e6;
+  --accent-color: #00aaff;
+  --accent-glow: rgba(0, 170, 255, 0.2);
+  --shadow-color: rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="dark"] {
+  /* Dark Mode Overrides */
+  --page-bg-color: #1a1a1a;
+  --content-bg-color: #282828;
+  --text-color: #e0e0e0;
+  --header-color: #ffffff;
+  --border-color: #444444;
+  --accent-color: #00ffff;
+  --accent-glow: rgba(0, 255, 255, 0.2);
+  --shadow-color: rgba(0, 0, 0, 0.4);
+}
+
+/* --- 3. ANIMATED BACKGROUND --- */
+@keyframes blobMotion {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(60px, -40px) scale(1.1); }
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 30% 70%, rgba(0,170,255,0.25), transparent 60%),
+    radial-gradient(circle at 80% 30%, rgba(255,255,255,0.2), transparent 70%);
+  filter: blur(60px);
+  animation: blobMotion 35s ease-in-out infinite alternate;
+}
+[data-theme="dark"] body::before {
+  background:
+    radial-gradient(circle at 30% 70%, rgba(0,255,255,0.15), transparent 70%),
+    radial-gradient(circle at 70% 20%, rgba(255,255,255,0.05), transparent 70%);
+}
+
+
+
+/* --- 4. GENERAL STYLING --- */
+html, body, .bd-page {
+  background-color: transparent; /* Make all main containers transparent */
+}
+body {
+  color: var(--text-color);
+  font-family: 'Quicksand', sans-serif;
+}
+/* Apply background color only to the main content and sidebar */
+.bd-main .bd-content, .bd-sidebar-primary {
+  background-color: var(--content-bg-color);
+  box-shadow: 0 10px 30px var(--shadow-color);
+  border-radius: 24px;
+  border: 1px solid var(--border-color);
+}
+.bd-sidebar-primary {
+  margin-left: 1em;
+}
+/* ... Rest of your general styles ... */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--header-color);
+  border-bottom-color: var(--border-color);
+}
+a {
+  color: var(--accent-color);
+  font-weight: 700;
+  text-decoration: none;
+}
+a:hover { text-decoration: underline; }
+.bd-sidebar-primary .nav-link { color: var(--text-color); }
+.bd-sidebar-primary .nav-link.active {
+  background-color: var(--accent-color);
+  color: #000000;
+  box-shadow: 0 5px 15px var(--accent-glow);
+  border-radius: 8px;
+}
+.search-button__kbd-shortcut { color: var(--text-color); }
+.footer-items { color: var(--text-color); }
+
+/* --- 5. HOMEPAGE STYLING --- */
+.jb-article > h1:first-of-type { display: none; }
+.kaomoji {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 0;
+  color: var(--text-color);
+}
+.welcome-header {
+  font-family: 'Poppins', sans-serif;
+  font-size: 5rem;
+  letter-spacing: -2px;
+  text-align: center;
+  font-weight: 700;
+  color: var(--header-color);
+  margin-top: -1em !important;
+}
+.welcome-header .accent { color: var(--accent-color); }
+.welcome-subtitle { text-align: center; font-size: 1.2rem; color: var(--text-color); margin-bottom: 3em; }
+.homepage .sd-card {
+  margin-bottom: 1.2em !important;
+  background-color: var(--content-bg-color); /* Match card background */
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  box-shadow: none;
+  text-align: center;
+  padding: 1.5em 1em;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+.sd-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px var(--shadow-color);
+  background-color: var(--content-bg-color);
+}
+.sd-card-body { padding: 0; }
+.card-link {
+    text-decoration: none;
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+.card-link:hover, .card-link:hover strong {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+.card-link strong {
+    font-weight: 700;
+    font-size: 1.1em;
+    color: var(--header-color);
+}
+.card-description {
+    font-size: 0.9em;
+    color: var(--text-color);
+    padding: 0 1em;
+    margin-top: 0.5em;
+    line-height: 1.4;
+    opacity: 0.8;
+}
+.icon-nav-icon {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 0.8em auto;
+    background-color: var(--accent-color);
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    transition: transform 0.2s ease-in-out;
+}
+.sd-card:hover .icon-nav-icon { transform: scale(1.2); }
+.icon-labs { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10 22h4M8.5 22l1.7-5.1a2 2 0 0 1 1.8-1.4l2 0a2 2 0 0 1 1.8 1.4L17.5 22M7 10h10M7 10l1.1-5a2 2 0 0 1 2-1.5h1.8a2 2 0 0 1 2 1.5L15 10'%3E%3C/path%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10 22h4M8.5 22l1.7-5.1a2 2 0 0 1 1.8-1.4l2 0a2 2 0 0 1 1.8 1.4L17.5 22M7 10h10M7 10l1.1-5a2 2 0 0 1 2-1.5h1.8a2 2 0 0 1 2 1.5L15 10'%3E%3C/path%3E%3C/svg%3E");}
+.icon-exercises { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 20h9'%3E%3C/path%3E%3Cpath d='M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z'%3E%3C/path%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 20h9'%3E%3C/path%3E%3Cpath d='M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z'%3E%3C/path%3E%3C/svg%3E");}
+.icon-projects { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.3.05-3.1S5.21 15.24 4.5 16.5z'%3E%3C/path%3E%3Cpath d='M12.5 12.5a2.5 2.5 0 0 1-3.54-3.54 2.5 2.5 0 0 1 3.54 3.54z'%3E%3C/path%3E%3Cpath d='M18 18c-5.94 3-9 2-9-2s1-3.06 2-9c1.4-8.58 9-9 9-9s.42 7.6-9 9'%3E%3C/path%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.3.05-3.1S5.21 15.24 4.5 16.5z'%3E%3C/path%3E%3Cpath d='M12.5 12.5a2.5 2.5 0 0 1-3.54-3.54 2.5 2.5 0 0 1 3.54 3.54z'%3E%3C/path%3E%3Cpath d='M18 18c-5.94 3-9 2-9-2s1-3.06 2-9c1.4-8.58 9-9 9-9s.42 7.6-9 9'%3E%3C/path%3E%3C/svg%3E");}
+
+/* --- 6. SIDEBAR LOGO SIZE FIX --- */
+.sidebar-logo {
+    max-width: 80px !important;    /* make smaller, try 70 or 60 if still large */
+    margin: 10px auto !important;  /* center it nicely */
+    border-radius: 12px;           /* optional: soften corners */
+}
+
+/* Reduce sidebar header spacing */
+.bd-sidebar .sidebar-header {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+}
+
+
+/* --- 7. HOMEPAGE SPACING CLEANUP --- */
+
+/* Reduce excess white space below the homepage content */
+.bd-content {
+    margin-bottom: 1.5rem !important;  /* reduce from large default (~5rem) */
+    padding-bottom: 1rem !important;
+}
+
+/* Slightly tighten top spacing for the header section */
+.welcome-header {
+    margin-top: -0.5em !important;  /* was -1em, small adjustment for balance */
+    margin-bottom: 0.3em !important;
+}
+
+/* Make subtitle closer to header */
+.welcome-subtitle {
+    margin-top: 0.5em !important;
+    margin-bottom: 2em !important;
+}
+
+
+/* --- HOMEPAGE-ONLY CENTERED LAYOUT --- */
+.homepage {
+    text-align: center;
+}
+
+/* Center only the elements inside the homepage */
+.homepage .welcome-header,
+.homepage .welcome-subtitle,
+.homepage .kaomoji,
+.homepage .sd-card,
+.homepage .grid,
+.homepage .grid-item-card {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+/* --- DEFAULT CONTENT PAGES (LABS, EXERCISES, PROJECTS) --- */
+.bd-content {
+    text-align: left !important;
+    display: block !important;   /* reset flex layout */
+}
+
+/* --- FORCE NORMAL LAYOUT FOR ALL NON-HOMEPAGE CONTENT --- */
+body:not(.homepage) .bd-main .bd-content,
+.bd-main .bd-content:not(.homepage) {
+    display: block !important;
+    text-align: left !important;
+    align-items: unset !important;
+    justify-content: unset !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+
