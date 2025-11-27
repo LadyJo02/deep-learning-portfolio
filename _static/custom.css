@@ -92,12 +92,12 @@ a:hover { text-decoration: underline; }
 
 /* --- 5. HOMEPAGE STYLING --- */
 /* Hide titles on all normal pages */
-body:not([data-page="intro"]) .jb-article > h1:first-of-type {
+body:not([data-page="index"]) .jb-article > h1:first-of-type {
     display: none;
 }
 
 /* Allow homepage title so browser tab works */
-body[data-page="intro"] .jb-article > h1:first-of-type {
+body[data-page="index"] .jb-article > h1:first-of-type {
     visibility: hidden;
     height: 0;
     margin: 0;
@@ -252,7 +252,7 @@ body:not(.homepage) .bd-main .bd-content,
 }
 
 /* Hide TOC block on homepage */
-body[data-page="intro"] .bd-toc {
+body[data-page="index"] .bd-toc {
     display: none !important;
 }
 
