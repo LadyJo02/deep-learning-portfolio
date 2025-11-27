@@ -58,6 +58,8 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'blog/learning_rate';</script>
     <link rel="icon" href="../_static/logo.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -366,7 +368,6 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">How Learning Rate Shapes the Journey of a Neural Network</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-deep-learning-blog-post-by-joanna-reyda-d-santos">A Deep Learning Blog Post by Joanna Reyda D. Santos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
 </ul>
 </li>
@@ -405,9 +406,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="how-learning-rate-shapes-the-journey-of-a-neural-network">
 <h1>How Learning Rate Shapes the Journey of a Neural Network<a class="headerlink" href="#how-learning-rate-shapes-the-journey-of-a-neural-network" title="Link to this heading">#</a></h1>
-<section id="a-deep-learning-blog-post-by-joanna-reyda-d-santos">
-<h2>A Deep Learning Blog Post by Joanna Reyda D. Santos<a class="headerlink" href="#a-deep-learning-blog-post-by-joanna-reyda-d-santos" title="Link to this heading">#</a></h2>
-</section>
+<p>A Deep Learning Blog Post by Joanna Reyda D. Santos</p>
 <hr class="docutils" />
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
@@ -420,14 +419,15 @@ If the pace is too fast, the student becomes overwhelmed.</p>
 <hr class="docutils" />
 <section class="tex2jax_ignore mathjax_ignore" id="what-is-learning-rate">
 <h1>What is Learning Rate?<a class="headerlink" href="#what-is-learning-rate" title="Link to this heading">#</a></h1>
-<p>A neural network updates its weights through gradient descent:</p>
-<p>[
+<p>During training, model weights are updated using gradient descent:</p>
+<div class="math notranslate nohighlight">
+\[
 \theta_{t+1} = \theta_t - \eta \cdot \nabla_\theta L(\theta_t)
-]</p>
+\]</div>
 <p>Where:</p>
 <ul class="simple">
 <li><p>( \theta ): model weights</p></li>
-<li><p>( L ): loss</p></li>
+<li><p>( L ): loss function</p></li>
 <li><p>( \nabla_\theta L ): gradient</p></li>
 <li><p>( \eta ): learning rate</p></li>
 </ul>
@@ -730,7 +730,6 @@ A well-chosen learning rate enables efficient and stable learning, while a poor 
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">How Learning Rate Shapes the Journey of a Neural Network</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-deep-learning-blog-post-by-joanna-reyda-d-santos">A Deep Learning Blog Post by Joanna Reyda D. Santos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
 </ul>
 </li>

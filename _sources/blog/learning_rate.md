@@ -4,7 +4,7 @@ author: "Joanna Reyda D. Santos"
 ---
 
 # How Learning Rate Shapes the Journey of a Neural Network
-### A Deep Learning Blog Post by Joanna Reyda D. Santos
+A Deep Learning Blog Post by Joanna Reyda D. Santos
 
 ---
 
@@ -20,16 +20,16 @@ In deep learning, this “pace of learning” is controlled by a single but infl
 
 # What is Learning Rate?
 
-A neural network updates its weights through gradient descent:
+During training, model weights are updated using gradient descent:
 
-\[
+$$
 \theta_{t+1} = \theta_t - \eta \cdot \nabla_\theta L(\theta_t)
-\]
+$$
 
 Where:
 
 - \( \theta \): model weights  
-- \( L \): loss  
+- \( L \): loss function  
 - \( \nabla_\theta L \): gradient  
 - \( \eta \): learning rate  
 
