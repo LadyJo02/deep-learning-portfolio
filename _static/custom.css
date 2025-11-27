@@ -91,7 +91,20 @@ a:hover { text-decoration: underline; }
 .footer-items { color: var(--text-color); }
 
 /* --- 5. HOMEPAGE STYLING --- */
-.jb-article > h1:first-of-type { display: none; }
+/* Hide titles on all normal pages */
+body:not([data-page="intro"]) .jb-article > h1:first-of-type {
+    display: none;
+}
+
+/* Allow homepage title so browser tab works */
+body[data-page="intro"] .jb-article > h1:first-of-type {
+    visibility: hidden;
+    height: 0;
+    margin: 0;
+    padding: 0;
+}
+
+
 .kaomoji {
   text-align: center;
   font-size: 3rem;
@@ -238,8 +251,9 @@ body:not(.homepage) .bd-main .bd-content,
     margin-right: 0 !important;
 }
 
-/* Hide contents toggle on homepage */
-.homepage .toc-overlay__button {
+/* Hide TOC block on homepage */
+body[data-page="intro"] .bd-toc {
     display: none !important;
 }
+
 
