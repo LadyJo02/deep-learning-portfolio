@@ -1,8 +1,12 @@
+---
+title: Home
+---
+
 ```{raw} html
 <div class="homepage">
 ```
 
-<center>(●'◡'●)</center>
+<span class="kaomoji">(●'◡'●)</span>
 
 <span class="welcome-header">hi! i'm <span class="accent">Joanna</span></span>
 
