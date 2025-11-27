@@ -238,4 +238,8 @@ body:not(.homepage) .bd-main .bd-content,
     margin-right: 0 !important;
 }
 
+/* Hide contents toggle on homepage */
+.homepage .toc-overlay__button {
+    display: none !important;
+}
 
