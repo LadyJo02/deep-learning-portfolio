@@ -1,7 +1,3 @@
----
-title: Home
----
-
 ```{raw} html
 <div class="homepage">
 ```

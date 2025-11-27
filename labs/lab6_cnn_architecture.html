@@ -35,7 +35,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a77d40df" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=0b30aeea" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -595,12 +595,12 @@ document.write(`
 <span class="g g-Whitespace">    </span><span class="mi">968</span>     <span class="n">decoupled_weight_decay</span><span class="o">=</span><span class="n">decoupled_weight_decay</span><span class="p">,</span>
 <span class="g g-Whitespace">    </span><span class="mi">969</span> <span class="p">)</span>
 
-<span class="nn">File ~\AppData\Local\Programs\Python\Python313\Lib\site-packages\torch\optim\adam.py:447,</span> in <span class="ni">_single_tensor_adam</span><span class="nt">(params, grads, exp_avgs, exp_avg_sqs, max_exp_avg_sqs, state_steps, grad_scale, found_inf, amsgrad, has_complex, beta1, beta2, lr, weight_decay, eps, maximize, capturable, differentiable, decoupled_weight_decay)</span>
-<span class="g g-Whitespace">    </span><span class="mi">444</span>     <span class="n">device_beta1</span> <span class="o">=</span> <span class="n">beta1</span>
-<span class="g g-Whitespace">    </span><span class="mi">446</span> <span class="c1"># Decay the first and second moment running average coefficient</span>
-<span class="ne">--&gt; </span><span class="mi">447</span> <span class="n">exp_avg</span><span class="o">.</span><span class="n">lerp_</span><span class="p">(</span><span class="n">grad</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">device_beta1</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">449</span> <span class="c1"># Nested if is necessary to bypass jitscript rules</span>
-<span class="g g-Whitespace">    </span><span class="mi">450</span> <span class="k">if</span> <span class="n">differentiable</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">beta2</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">):</span>
+<span class="nn">File ~\AppData\Local\Programs\Python\Python313\Lib\site-packages\torch\optim\adam.py:533,</span> in <span class="ni">_single_tensor_adam</span><span class="nt">(params, grads, exp_avgs, exp_avg_sqs, max_exp_avg_sqs, state_steps, grad_scale, found_inf, amsgrad, has_complex, beta1, beta2, lr, weight_decay, eps, maximize, capturable, differentiable, decoupled_weight_decay)</span>
+<span class="g g-Whitespace">    </span><span class="mi">531</span>         <span class="n">denom</span> <span class="o">=</span> <span class="p">(</span><span class="n">max_exp_avg_sqs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">sqrt</span><span class="p">()</span> <span class="o">/</span> <span class="n">bias_correction2_sqrt</span><span class="p">)</span><span class="o">.</span><span class="n">add_</span><span class="p">(</span><span class="n">eps</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">532</span>     <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">533</span>         <span class="n">denom</span> <span class="o">=</span> <span class="p">(</span><span class="n">exp_avg_sq</span><span class="o">.</span><span class="n">sqrt</span><span class="p">()</span> <span class="o">/</span> <span class="n">bias_correction2_sqrt</span><span class="p">)</span><span class="o">.</span><span class="n">add_</span><span class="p">(</span><span class="n">eps</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">535</span>     <span class="n">param</span><span class="o">.</span><span class="n">addcdiv_</span><span class="p">(</span><span class="n">exp_avg</span><span class="p">,</span> <span class="n">denom</span><span class="p">,</span> <span class="n">value</span><span class="o">=-</span><span class="n">step_size</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">537</span> <span class="c1"># Lastly, switch back to complex view</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
