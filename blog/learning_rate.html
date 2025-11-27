@@ -200,6 +200,8 @@
 
 
 
+
+
 </ul>
 
     </div>
@@ -364,26 +366,29 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">How Learning Rate Shapes the Journey of a Neural Network</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deep-learning-blog-post">Deep Learning Blog Post</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-deep-learning-blog-post-by-joanna-reyda-d-santos">A Deep Learning Blog Post by Joanna Reyda D. Santos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-learning-rate">What is Learning Rate?</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#effects-of-different-learning-rates">Effects of Different Learning Rates</a></li>
 </ul>
 </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-learning-rate">What is Learning Rate?</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#small-learning-rate-0-0001">Small Learning Rate (0.0001)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ideal-learning-rate-0-001">Ideal Learning Rate (0.001)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#large-learning-rate-0-01">Large Learning Rate (0.01)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#experiment-overview">Experiment Overview</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#cnn-model-code">CNN Model Code</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-loading">Dataset Loading</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#training-function">Training Function</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-experiment">Running the Experiment</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-experiments">Running the Experiments</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-the-results">Plotting the Results</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#results-and-interpretation">Results and Interpretation</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-rate-0-001-best-performance">Learning Rate = <strong>0.001</strong> (Best Performance)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-rate-0-0001-too-slow">Learning Rate = <strong>0.0001</strong> (Too Slow)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-rate-0-01-unstable">Learning Rate = <strong>0.01</strong> (Unstable)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#results-interpretation">Results &amp; Interpretation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-rate-0-001-optimal">Learning Rate = 0.001 (Optimal)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-rate-0-0001-too-small">Learning Rate = 0.0001 (Too Small)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-rate-0-01-too-large">Learning Rate = 0.01 (Too Large)</a></li>
 </ul>
 </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#reflections">Reflections</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
@@ -400,61 +405,59 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="how-learning-rate-shapes-the-journey-of-a-neural-network">
 <h1>How Learning Rate Shapes the Journey of a Neural Network<a class="headerlink" href="#how-learning-rate-shapes-the-journey-of-a-neural-network" title="Link to this heading">#</a></h1>
-<section id="deep-learning-blog-post">
-<h2>Deep Learning Blog Post<a class="headerlink" href="#deep-learning-blog-post" title="Link to this heading">#</a></h2>
+<section id="a-deep-learning-blog-post-by-joanna-reyda-d-santos">
+<h2>A Deep Learning Blog Post by Joanna Reyda D. Santos<a class="headerlink" href="#a-deep-learning-blog-post-by-joanna-reyda-d-santos" title="Link to this heading">#</a></h2>
 </section>
 <hr class="docutils" />
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
-<p>Training a neural network involves gradually adjusting model parameters to minimize error.<br />
-However, the speed at which these adjustments occur is controlled by a critical hyperparameter known as the <strong>learning rate</strong>.</p>
-<p>Choosing the right learning rate is essential:</p>
-<ul class="simple">
-<li><p>too slow, and the model learns inefficiently,</p></li>
-<li><p>too fast, and the model becomes unstable.</p></li>
-</ul>
-<p>This blog explores the concept of learning rate through explanation and experimentation.</p>
+<p>Training a neural network is similar to teaching a student.<br />
+If the pace is too slow, learning becomes unproductive.<br />
+If the pace is too fast, the student becomes overwhelmed.</p>
+<p>In deep learning, this “pace of learning” is controlled by a single but influential hyperparameter: the <strong>learning rate</strong>.</p>
+</section>
 </section>
 <hr class="docutils" />
-<section id="what-is-learning-rate">
-<h2>What is Learning Rate?<a class="headerlink" href="#what-is-learning-rate" title="Link to this heading">#</a></h2>
-<p>During training, model weights are updated using gradient descent:</p>
+<section class="tex2jax_ignore mathjax_ignore" id="what-is-learning-rate">
+<h1>What is Learning Rate?<a class="headerlink" href="#what-is-learning-rate" title="Link to this heading">#</a></h1>
+<p>A neural network updates its weights through gradient descent:</p>
 <p>[
 \theta_{t+1} = \theta_t - \eta \cdot \nabla_\theta L(\theta_t)
 ]</p>
 <p>Where:</p>
 <ul class="simple">
 <li><p>( \theta ): model weights</p></li>
-<li><p>( L ): loss function</p></li>
+<li><p>( L ): loss</p></li>
 <li><p>( \nabla_\theta L ): gradient</p></li>
-<li><p><strong>( \eta )</strong>: learning rate</p></li>
+<li><p>( \eta ): learning rate</p></li>
 </ul>
-<section id="effects-of-different-learning-rates">
-<h3>Effects of Different Learning Rates<a class="headerlink" href="#effects-of-different-learning-rates" title="Link to this heading">#</a></h3>
-<p><strong>Small Learning Rate (0.0001)</strong></p>
+<section id="small-learning-rate-0-0001">
+<h2>Small Learning Rate (0.0001)<a class="headerlink" href="#small-learning-rate-0-0001" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Very stable</p></li>
-<li><p>Slow progress</p></li>
-<li><p>May not converge in reasonable time</p></li>
-</ul>
-<p><strong>Medium Learning Rate (0.001)</strong></p>
-<ul class="simple">
-<li><p>Typically optimal</p></li>
-<li><p>Smooth and consistent convergence</p></li>
-<li><p>Good accuracy</p></li>
-</ul>
-<p><strong>Large Learning Rate (0.01)</strong></p>
-<ul class="simple">
-<li><p>Unstable</p></li>
-<li><p>Loss may oscillate</p></li>
-<li><p>Training may diverge entirely</p></li>
+<li><p>learns slowly</p></li>
+<li><p>stable but may get stuck in local minima</p></li>
 </ul>
 </section>
+<section id="ideal-learning-rate-0-001">
+<h2>Ideal Learning Rate (0.001)<a class="headerlink" href="#ideal-learning-rate-0-001" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>balanced</p></li>
+<li><p>allows smooth convergence</p></li>
+<li><p>often yields the best overall accuracy</p></li>
+</ul>
+</section>
+<section id="large-learning-rate-0-01">
+<h2>Large Learning Rate (0.01)<a class="headerlink" href="#large-learning-rate-0-01" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>unstable</p></li>
+<li><p>may overshoot minima</p></li>
+<li><p>risk of divergence</p></li>
+</ul>
 </section>
 <hr class="docutils" />
 <section id="experiment-overview">
 <h2>Experiment Overview<a class="headerlink" href="#experiment-overview" title="Link to this heading">#</a></h2>
-<p>To observe the impact of learning rate, a simple CNN was trained on the <strong>MNIST</strong> digit recognition dataset using three learning rates:</p>
+<p>To visualize how learning rate affects model behavior, I trained a simple CNN on the <strong>MNIST</strong> dataset using three different learning rates:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Learning Rate</p></th>
@@ -462,14 +465,14 @@ However, the speed at which these adjustments occur is controlled by a critical 
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>0.0001</p></td>
-<td><p>Slow, stable, low accuracy</p></td>
+<tr class="row-even"><td><p><strong>0.0001</strong></p></td>
+<td><p>slow learning</p></td>
 </tr>
-<tr class="row-odd"><td><p>0.001</p></td>
-<td><p>Ideal, smooth convergence</p></td>
+<tr class="row-odd"><td><p><strong>0.001</strong></p></td>
+<td><p>optimal</p></td>
 </tr>
-<tr class="row-even"><td><p>0.01</p></td>
-<td><p>Unstable or diverging</p></td>
+<tr class="row-even"><td><p><strong>0.01</strong></p></td>
+<td><p>unstable</p></td>
 </tr>
 </tbody>
 </table>
@@ -477,15 +480,13 @@ However, the speed at which these adjustments occur is controlled by a critical 
 <p><strong>Dataset:</strong> MNIST (28×28 grayscale images)<br />
 <strong>Model:</strong> Simple CNN<br />
 <strong>Epochs:</strong> 5<br />
-<strong>Optimizer:</strong> Adam<br />
-<strong>Comparison:</strong> Loss curves and validation accuracy trends</p>
+<strong>Optimizer:</strong> Adam</p>
 </section>
 </section>
 <hr class="docutils" />
 <section class="tex2jax_ignore mathjax_ignore" id="cnn-model-code">
 <h1>CNN Model Code<a class="headerlink" href="#cnn-model-code" title="Link to this heading">#</a></h1>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import necessary libraries</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nn</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">torch.optim</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">optim</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">torchvision</span><span class="w"> </span><span class="kn">import</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">transforms</span>
@@ -576,8 +577,8 @@ However, the speed at which these adjustments occur is controlled by a critical 
 </div>
 </section>
 <hr class="docutils" />
-<section class="tex2jax_ignore mathjax_ignore" id="running-the-experiment">
-<h1>Running the Experiment<a class="headerlink" href="#running-the-experiment" title="Link to this heading">#</a></h1>
+<section class="tex2jax_ignore mathjax_ignore" id="running-the-experiments">
+<h1>Running the Experiments<a class="headerlink" href="#running-the-experiments" title="Link to this heading">#</a></h1>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">lrs</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">]</span>
 <span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
 
@@ -593,7 +594,7 @@ However, the speed at which these adjustments occur is controlled by a critical 
 <h1>Plotting the Results<a class="headerlink" href="#plotting-the-results" title="Link to this heading">#</a></h1>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
 
-<span class="c1"># Loss</span>
+<span class="c1"># Loss Curves</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">lr</span> <span class="ow">in</span> <span class="n">lrs</span><span class="p">:</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="n">lr</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;LR=</span><span class="si">{</span><span class="n">lr</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -602,7 +603,7 @@ However, the speed at which these adjustments occur is controlled by a critical 
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Loss&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 
-<span class="c1"># Accuracy</span>
+<span class="c1"># Accuracy Curves</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">lr</span> <span class="ow">in</span> <span class="n">lrs</span><span class="p">:</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="n">lr</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;LR=</span><span class="si">{</span><span class="n">lr</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -616,45 +617,51 @@ However, the speed at which these adjustments occur is controlled by a critical 
 </div>
 </section>
 <hr class="docutils" />
-<section class="tex2jax_ignore mathjax_ignore" id="results-and-interpretation">
-<h1>Results and Interpretation<a class="headerlink" href="#results-and-interpretation" title="Link to this heading">#</a></h1>
-<section id="learning-rate-0-001-best-performance">
-<h2>Learning Rate = <strong>0.001</strong> (Best Performance)<a class="headerlink" href="#learning-rate-0-001-best-performance" title="Link to this heading">#</a></h2>
+<section class="tex2jax_ignore mathjax_ignore" id="results-interpretation">
+<h1>Results &amp; Interpretation<a class="headerlink" href="#results-interpretation" title="Link to this heading">#</a></h1>
+<section id="learning-rate-0-001-optimal">
+<h2>Learning Rate = 0.001 (Optimal)<a class="headerlink" href="#learning-rate-0-001-optimal" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Consistent decrease in loss</p></li>
-<li><p>High validation accuracy (≈ 97–98%)</p></li>
-<li><p>Stable convergence</p></li>
-<li><p>Smooth training curve</p></li>
+<li><p>The training curve is stable and smooth.</p></li>
+<li><p>Achieves the highest accuracy (~98%).</p></li>
+<li><p>Converges efficiently.</p></li>
 </ul>
 </section>
-<section id="learning-rate-0-0001-too-slow">
-<h2>Learning Rate = <strong>0.0001</strong> (Too Slow)<a class="headerlink" href="#learning-rate-0-0001-too-slow" title="Link to this heading">#</a></h2>
+<section id="learning-rate-0-0001-too-small">
+<h2>Learning Rate = 0.0001 (Too Small)<a class="headerlink" href="#learning-rate-0-0001-too-small" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Loss decreases very gradually</p></li>
-<li><p>Accuracy improves but remains lower compared to 0.001</p></li>
-<li><p>More epochs would be required to reach optimal performance</p></li>
+<li><p>Training is very slow.</p></li>
+<li><p>Loss decreases gradually.</p></li>
+<li><p>Needs more epochs to reach high accuracy.</p></li>
 </ul>
 </section>
-<section id="learning-rate-0-01-unstable">
-<h2>Learning Rate = <strong>0.01</strong> (Unstable)<a class="headerlink" href="#learning-rate-0-01-unstable" title="Link to this heading">#</a></h2>
+<section id="learning-rate-0-01-too-large">
+<h2>Learning Rate = 0.01 (Too Large)<a class="headerlink" href="#learning-rate-0-01-too-large" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Loss fluctuates or increases</p></li>
-<li><p>Accuracy stagnates or declines</p></li>
-<li><p>Can cause divergence in training</p></li>
+<li><p>Highly unstable.</p></li>
+<li><p>Accuracy oscillates and may not improve.</p></li>
+<li><p>Sometimes diverges entirely.</p></li>
 </ul>
-<p>These observations confirm that the learning rate has a dramatic impact on performance, stability, and convergence speed.</p>
 </section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="reflections">
+<h1>Reflections<a class="headerlink" href="#reflections" title="Link to this heading">#</a></h1>
+<p>From this experiment, I learned that even small changes in learning rate dramatically affect:</p>
+<ol class="arabic simple">
+<li><p><strong>Training stability</strong></p></li>
+<li><p><strong>Speed of convergence</strong></p></li>
+<li><p><strong>Final performance</strong></p></li>
+</ol>
+<p>A poorly chosen learning rate cannot be compensated by simply training longer.<br />
+Because of this, tuning the learning rate is often the <strong>first and most important</strong> hyperparameter decision.</p>
 </section>
 <hr class="docutils" />
 <section class="tex2jax_ignore mathjax_ignore" id="conclusion">
 <h1>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h1>
-<p>The learning rate is one of the most influential hyperparameters when training deep learning models. This experiment demonstrated that:</p>
-<ul class="simple">
-<li><p>A learning rate that is <strong>too small</strong> slows learning and delays convergence.</p></li>
-<li><p>A learning rate that is <strong>too large</strong> destabilizes training and may prevent convergence entirely.</p></li>
-<li><p>An appropriately chosen learning rate (here, <strong>0.001</strong>) achieves the best balance between speed and stability.</p></li>
-</ul>
-<p>Understanding the behavior of learning rates is essential for effective model tuning and should be among the first hyperparameters evaluated in any deep learning workflow.</p>
+<p>The learning rate is one of the most influential hyperparameters in deep learning.<br />
+A well-chosen learning rate enables efficient and stable learning, while a poor choice can prevent learning altogether.</p>
+<p>This experiment demonstrated how different learning rates affect the behavior of a CNN model on MNIST and highlighted why selecting the right value is crucial for model success.</p>
 </section>
 <hr class="docutils" />
 <section class="tex2jax_ignore mathjax_ignore" id="references">
@@ -723,26 +730,29 @@ However, the speed at which these adjustments occur is controlled by a critical 
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">How Learning Rate Shapes the Journey of a Neural Network</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deep-learning-blog-post">Deep Learning Blog Post</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-deep-learning-blog-post-by-joanna-reyda-d-santos">A Deep Learning Blog Post by Joanna Reyda D. Santos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-learning-rate">What is Learning Rate?</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#effects-of-different-learning-rates">Effects of Different Learning Rates</a></li>
 </ul>
 </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-learning-rate">What is Learning Rate?</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#small-learning-rate-0-0001">Small Learning Rate (0.0001)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ideal-learning-rate-0-001">Ideal Learning Rate (0.001)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#large-learning-rate-0-01">Large Learning Rate (0.01)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#experiment-overview">Experiment Overview</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#cnn-model-code">CNN Model Code</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-loading">Dataset Loading</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#training-function">Training Function</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-experiment">Running the Experiment</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-experiments">Running the Experiments</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-the-results">Plotting the Results</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#results-and-interpretation">Results and Interpretation</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-rate-0-001-best-performance">Learning Rate = <strong>0.001</strong> (Best Performance)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-rate-0-0001-too-slow">Learning Rate = <strong>0.0001</strong> (Too Slow)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-rate-0-01-unstable">Learning Rate = <strong>0.01</strong> (Unstable)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#results-interpretation">Results &amp; Interpretation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-rate-0-001-optimal">Learning Rate = 0.001 (Optimal)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-rate-0-0001-too-small">Learning Rate = 0.0001 (Too Small)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-rate-0-01-too-large">Learning Rate = 0.01 (Too Large)</a></li>
 </ul>
 </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#reflections">Reflections</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>

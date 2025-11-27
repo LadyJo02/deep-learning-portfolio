@@ -4,26 +4,23 @@ author: "Joanna Reyda D. Santos"
 ---
 
 # How Learning Rate Shapes the Journey of a Neural Network
-### Deep Learning Blog Post
+### A Deep Learning Blog Post by Joanna Reyda D. Santos
 
 ---
 
 ## Introduction
 
-Training a neural network involves gradually adjusting model parameters to minimize error.  
-However, the speed at which these adjustments occur is controlled by a critical hyperparameter known as the **learning rate**.
+Training a neural network is similar to teaching a student.  
+If the pace is too slow, learning becomes unproductive.  
+If the pace is too fast, the student becomes overwhelmed.
 
-Choosing the right learning rate is essential:
-- too slow, and the model learns inefficiently,  
-- too fast, and the model becomes unstable.
-
-This blog explores the concept of learning rate through explanation and experimentation.
+In deep learning, this “pace of learning” is controlled by a single but influential hyperparameter: the **learning rate**.
 
 ---
 
-## What is Learning Rate?
+# What is Learning Rate?
 
-During training, model weights are updated using gradient descent:
+A neural network updates its weights through gradient descent:
 
 \[
 \theta_{t+1} = \theta_t - \eta \cdot \nabla_\theta L(\theta_t)
@@ -32,51 +29,46 @@ During training, model weights are updated using gradient descent:
 Where:
 
 - \( \theta \): model weights  
-- \( L \): loss function  
+- \( L \): loss  
 - \( \nabla_\theta L \): gradient  
-- **\( \eta \)**: learning rate  
+- \( \eta \): learning rate  
 
-### Effects of Different Learning Rates
+### Small Learning Rate (0.0001)
+- learns slowly  
+- stable but may get stuck in local minima
 
-**Small Learning Rate (0.0001)**
-- Very stable  
-- Slow progress  
-- May not converge in reasonable time  
+### Ideal Learning Rate (0.001)
+- balanced  
+- allows smooth convergence  
+- often yields the best overall accuracy
 
-**Medium Learning Rate (0.001)**
-- Typically optimal  
-- Smooth and consistent convergence  
-- Good accuracy  
-
-**Large Learning Rate (0.01)**
-- Unstable  
-- Loss may oscillate  
-- Training may diverge entirely  
+### Large Learning Rate (0.01)
+- unstable  
+- may overshoot minima  
+- risk of divergence
 
 ---
 
 ## Experiment Overview
 
-To observe the impact of learning rate, a simple CNN was trained on the **MNIST** digit recognition dataset using three learning rates:
+To visualize how learning rate affects model behavior, I trained a simple CNN on the **MNIST** dataset using three different learning rates:
 
 | Learning Rate | Expected Behavior |
-|---------------|------------------|
-| 0.0001 | Slow, stable, low accuracy |
-| 0.001 | Ideal, smooth convergence |
-| 0.01 | Unstable or diverging |
+|--------------|------------------|
+| **0.0001** | slow learning |
+| **0.001** | optimal |
+| **0.01** | unstable |
 
 **Dataset:** MNIST (28×28 grayscale images)  
 **Model:** Simple CNN  
 **Epochs:** 5  
 **Optimizer:** Adam  
-**Comparison:** Loss curves and validation accuracy trends  
 
 ---
 
 # CNN Model Code
 
 ```python
-# Import necessary libraries
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -170,7 +162,7 @@ def train_model(lr):
 
 ---
 
-# Running the Experiment
+# Running the Experiments
 
 ```python
 lrs = [0.0001, 0.001, 0.01]
@@ -189,7 +181,7 @@ for lr in lrs:
 ```python
 plt.figure(figsize=(14,5))
 
-# Loss
+# Loss Curves
 plt.subplot(1,2,1)
 for lr in lrs:
     plt.plot(results[lr][0], label=f"LR={lr}")
@@ -198,7 +190,7 @@ plt.xlabel("Epoch")
 plt.ylabel("Loss")
 plt.legend()
 
-# Accuracy
+# Accuracy Curves
 plt.subplot(1,2,2)
 for lr in lrs:
     plt.plot(results[lr][1], label=f"LR={lr}")
@@ -212,37 +204,44 @@ plt.show()
 
 ---
 
-# Results and Interpretation
+# Results & Interpretation
 
-### Learning Rate = **0.001** (Best Performance)
-- Consistent decrease in loss  
-- High validation accuracy (≈ 97–98%)  
-- Stable convergence  
-- Smooth training curve  
+### Learning Rate = 0.001 (Optimal)
+- The training curve is stable and smooth.
+- Achieves the highest accuracy (~98%).
+- Converges efficiently.
 
-### Learning Rate = **0.0001** (Too Slow)
-- Loss decreases very gradually  
-- Accuracy improves but remains lower compared to 0.001  
-- More epochs would be required to reach optimal performance  
+### Learning Rate = 0.0001 (Too Small)
+- Training is very slow.
+- Loss decreases gradually.
+- Needs more epochs to reach high accuracy.
 
-### Learning Rate = **0.01** (Unstable)
-- Loss fluctuates or increases  
-- Accuracy stagnates or declines  
-- Can cause divergence in training  
+### Learning Rate = 0.01 (Too Large)
+- Highly unstable.
+- Accuracy oscillates and may not improve.
+- Sometimes diverges entirely.
 
-These observations confirm that the learning rate has a dramatic impact on performance, stability, and convergence speed.
+---
+
+# Reflections
+
+From this experiment, I learned that even small changes in learning rate dramatically affect:
+
+1. **Training stability**  
+2. **Speed of convergence**  
+3. **Final performance**
+
+A poorly chosen learning rate cannot be compensated by simply training longer.  
+Because of this, tuning the learning rate is often the **first and most important** hyperparameter decision.
 
 ---
 
 # Conclusion
 
-The learning rate is one of the most influential hyperparameters when training deep learning models. This experiment demonstrated that:
+The learning rate is one of the most influential hyperparameters in deep learning.  
+A well-chosen learning rate enables efficient and stable learning, while a poor choice can prevent learning altogether.
 
-- A learning rate that is **too small** slows learning and delays convergence.  
-- A learning rate that is **too large** destabilizes training and may prevent convergence entirely.  
-- An appropriately chosen learning rate (here, **0.001**) achieves the best balance between speed and stability.
-
-Understanding the behavior of learning rates is essential for effective model tuning and should be among the first hyperparameters evaluated in any deep learning workflow.
+This experiment demonstrated how different learning rates affect the behavior of a CNN model on MNIST and highlighted why selecting the right value is crucial for model success.
 
 ---
 
@@ -251,5 +250,5 @@ Understanding the behavior of learning rates is essential for effective model tu
 - **PyTorch Documentation:** https://pytorch.org/docs/stable/index.html  
 - **Deep Learning (Goodfellow, Bengio, Courville):** https://www.deeplearningbook.org/  
 - **MNIST Dataset Paper:** http://yann.lecun.com/exdb/mnist/  
-- **DS413 Lecture Notes** (Instructor-provided materials)  
+- **DS413 Lecture Notes** (Instructor-provided materials)
 
