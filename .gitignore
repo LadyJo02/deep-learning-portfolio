@@ -1,0 +1,12 @@
+# Ignore Jupyter Book build artifacts
+mybook/_build/
+_build/
+
+# Ignore Python virtual environments
+.venv/
+venv/
+
+# Misc
+__pycache__/
+*.pyc
+.cache/
