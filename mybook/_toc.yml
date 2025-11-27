@@ -26,3 +26,8 @@ parts:
     chapters:
       - file: projects/project1
         title: "Project 1"
+
+  - caption: "Deep Learning Blog"
+    chapters:
+      - file: blog/learning_rate
+        title: "How Learning Rate Shapes a Neural Network"
