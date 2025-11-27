@@ -22,20 +22,16 @@ In deep learning, this “pace of learning” is controlled by a single but infl
 
 During training, model weights are updated using gradient descent:
 
-```python
 $$
 \theta_{t+1} = \theta_t - \eta \cdot \nabla_\theta L(\theta_t)
 $$
-```
 
 Where:
 
-```python
 - \( \theta \): model weights  
 - \( L \): loss function  
 - \( \nabla_\theta L \): gradient  
 - \( \eta \): learning rate  
-```
 
 ### Small Learning Rate (0.0001)
 - learns slowly  
