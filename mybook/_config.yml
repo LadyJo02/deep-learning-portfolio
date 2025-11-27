@@ -4,7 +4,7 @@ copyright: "2025"
 logo: logo.png
 
 execute:
-  execute_notebooks: force
+  execute_notebooks: off
 
 html:
   favicon: logo.png

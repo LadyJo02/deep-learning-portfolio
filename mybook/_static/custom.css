@@ -91,18 +91,19 @@ a:hover { text-decoration: underline; }
 .footer-items { color: var(--text-color); }
 
 /* --- 5. HOMEPAGE STYLING --- */
-/* Hide page titles on all pages EXCEPT the homepage root (intro.md) */
-.jb-article > h1:first-of-type {
+/* Hide titles on all normal pages */
+body:not([data-page="index"]) .jb-article > h1:first-of-type {
     display: none;
 }
 
-.page-intro .jb-article > h1:first-of-type {
-    display: block !important;   /* show the title on homepage */
-    visibility: hidden;          /* but keep it invisible */
-    height: 0;                   /* remove height */
+/* Allow homepage title so browser tab works */
+body[data-page="index"] .jb-article > h1:first-of-type {
+    visibility: hidden;
+    height: 0;
     margin: 0;
     padding: 0;
 }
+
 
 .kaomoji {
   text-align: center;
@@ -250,8 +251,9 @@ body:not(.homepage) .bd-main .bd-content,
     margin-right: 0 !important;
 }
 
-/* Hide contents toggle on homepage */
-.homepage .toc-overlay__button {
+/* Hide TOC block on homepage */
+body[data-page="index"] .bd-toc {
     display: none !important;
 }
+
 
