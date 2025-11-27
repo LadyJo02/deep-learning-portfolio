@@ -94,7 +94,7 @@ a:hover { text-decoration: underline; }
 .jb-article > h1:first-of-type { display: none; }
 .kaomoji {
   text-align: center;
-  font-size: 2rem;
+  font-size: 3rem;
   margin-bottom: 0;
   color: var(--text-color);
 }
