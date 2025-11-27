@@ -28,10 +28,10 @@ $$
 
 Where:
 
-- \( \theta \): model weights  
-- \( L \): loss function  
-- \( \nabla_\theta L \): gradient  
-- \( \eta \): learning rate  
+- $$\( \theta \)$$: model weights  
+- $$\( L \)$$: loss function  
+- $$\( \nabla_\theta L \)$$: gradient  
+- $$\( \eta \)$$: learning rate  
 
 ### Small Learning Rate (0.0001)
 - learns slowly  
