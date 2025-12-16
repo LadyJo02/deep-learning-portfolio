@@ -17,7 +17,7 @@ The complete research paper detailing the background, methodology, experimental 
 
 ## Exploratory Data Analysis (EDA)
 
-**EDA Notebook:** `EDA_Pulmoscope.ipynb`
+**EDA Notebook:** [EDA_Pulmoscope.ipynb](EDA_Pulmoscope.ipynb) 
 
 This notebook focuses on:
 - Clinical–demographic data exploration  
@@ -31,7 +31,7 @@ The EDA phase guided key modeling decisions such as **class consolidation**, **b
 
 ## Model Development and Experiments
 
-**Modeling Notebook:** `PulmoScope.ipynb`
+**Modeling Notebook:** [PulmoScope.ipynb](PulmoScope.ipynb)
 
 This notebook documents:
 - Audio preprocessing and feature extraction  
