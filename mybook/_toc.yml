@@ -24,8 +24,13 @@ parts:
 
   - caption: "Projects"
     chapters:
-      - file: projects/project1
-        title: "Project 1"
+      - file: projects/pulmoscope/index
+        title: "PulmoScope: AI for Lung Sound Analysis"
+        sections:
+          - file: projects/pulmoscope/EDA_Pulmoscope
+            title: "Exploratory Data Analysis"
+          - file: projects/pulmoscope/PulmoScope
+            title: "Model Development & Experiments"
 
   - caption: "Deep Learning Blog"
     chapters:
